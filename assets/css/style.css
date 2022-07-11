@@ -21,7 +21,7 @@ h1, h2 {
 header {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    background-color: rgba(34, 156, 54, 0.78);
+    background-color: rgba(34, 156, 54, 0.5);
     color: yellow;
     }
 
@@ -32,6 +32,13 @@ header {
 header a, header a:visited {
     color: yellow;
     text-decoration: none;
+}
+
+/* Hero Image */
+
+#hero-image {
+    width: 100vw;
+    background: url(../images/widescreen.jpg) no-repeat center top;
 }
 
 /* Navigation Links */
@@ -49,12 +56,29 @@ header a, header a:visited {
 
 #menu a:hover {
     background-color: yellow;
-    color:rgba(34, 156, 54, 0.78);
+    color:rgb(34, 156, 54);
 }
 
-/* Hero Image */
+#main-image {
+    min-height: 200px;
+    position: relative;
+}
 
-#hero-image {
-    width: 100vw;
-    background: url(../images/hero-image.webp) no-repeat center center;
+#tagline {
+    color: yellow;
+    background-color:rgba(34, 156, 54, 0.5);
+    bottom: 0.5em;
+    right: 0.5em;
+    position: absolute;
+}
+
+/* Main Content */
+
+#main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1em;
+    background-color: yellow;
+    width: 80vw;
+    text-align: center;
 }
