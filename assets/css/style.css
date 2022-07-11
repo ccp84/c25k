@@ -15,14 +15,46 @@ body {
 h1, h2 {
     font-family: 'Roboto', arial, sans-serif;
     text-transform: uppercase;
-    letter-spacing: .2em
+    letter-spacing: .1rem
 }
 
 header {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    background-color: rgba(34, 156, 54, 0.78);
+    color: yellow;
     }
 
 #logo {
-    font-size: 3rem;
+    font-size: 4vw;
+}
+
+header a, header a:visited {
+    color: yellow;
+    text-decoration: none;
+}
+
+/* Navigation Links */
+
+#menu {
+    font-size: 3vw;
+    text-align: right;
+    }
+
+#menu li {
+    display: inline-block;
+    list-style-type: none;
+    padding: .5rem;
+}
+
+#menu a:hover {
+    background-color: yellow;
+    color:rgba(34, 156, 54, 0.78);
+}
+
+/* Hero Image */
+
+#hero-image {
+    width: 100vw;
+    background: url(../images/hero-image.webp) no-repeat center center;
 }
