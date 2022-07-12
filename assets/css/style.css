@@ -95,7 +95,7 @@ header a, header a:visited {
 #circle-image {
     background-image: url(../images/c25k.png);
     height: 30px;
-    width: 30px
+    width: 30px;
     border-radius: 50%;
     margin: 0 auto;
 }
