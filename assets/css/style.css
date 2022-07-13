@@ -7,8 +7,7 @@
 }
 
 body {
-    font-family: 'Quicksand',arial, sans-serif;
-    font-size: 3vw;
+    font-family: 'Quicksand', arial, sans-serif;
 }
 
 /* Header and logo */
@@ -39,6 +38,8 @@ header a, header a:visited {
 
 #hero-image {
     background: url(../images/widescreen.jpg) no-repeat center top;
+    background-size: cover;
+    background-color: rgb(34, 156, 54);
     height: 100%;
 }
 
@@ -84,9 +85,13 @@ header a, header a:visited {
     text-align: center;
 }
 
+.grid-head {
+    -ms-grid-column-span: 3;
+}
+
 #center-circle {
-    height: 30px;
-    width: 30px;
+    height: 300px;
+    width: 300px;
     border: 2px solid rgb(34, 156, 54);
     border-radius: 50%;
     margin: 0 auto;
@@ -94,9 +99,13 @@ header a, header a:visited {
 
 #circle-image {
     background-image: url(../images/c25k.png);
-    height: 30px;
-    width: 30px;
+    height: 300px;
     border-radius: 50%;
     margin: 0 auto;
 }
 
+#meetings {
+    background-image: url(../images/hero-image.webp) no repeat center cover;
+    width: 100%;
+    overflow: hidden;
+}
