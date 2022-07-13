@@ -115,9 +115,10 @@ header a, header a:visited {
     overflow: hidden;
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0.7);
-    margin: 2em;
-    padding: 2em;
-    border: solid 1px black;
+footer {
+    text-align: justify;
+}
+
+footer li {
+    display: inline-block;
 }
