@@ -81,12 +81,12 @@ header a, header a:visited {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1em;
     background-color: yellow;
-    width: 80vw;
     text-align: center;
 }
 
-.grid-head {
-    -ms-grid-column-span: 3;
+#grid-head {
+    grid-column-start: 1;
+    grid-column-end: 4;
 }
 
 #center-circle {
@@ -105,7 +105,19 @@ header a, header a:visited {
 }
 
 #meetings {
-    background-image: url(../images/hero-image.webp) no repeat center cover;
-    width: 100%;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-image: url(../images/hero-image.webp) center center no-repeat;
+    background-size: cover;
+    height: 100%;
     overflow: hidden;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 2em;
+    padding: 2em;
+    border: solid 1px black;
 }
