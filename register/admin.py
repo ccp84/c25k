@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Run, Profile
 
-# Register your models here.
+admin.site.register(Run)
+admin.site.register(Profile)
