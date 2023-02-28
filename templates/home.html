@@ -1,12 +1,24 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>
+    <h1>Welcome to c25k</h1>
+    <p>Intro paragraph</p>
         {% if user.is_authenticated %}
-            <h1>Welcome {{ user.profile.first_name }}</h1>
-        {% else %}
-            <h1>Welcome Visitor</h1>
-            <p>You are not logged in</p>
+            <table>
+                <tr>
+                    <th>Run</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+                {% for run in run_list %}
+                {% if forloop.counter <= 5 %}
+                    <tr>
+                        <td>{{ run.title }}</td>
+                        <td>{{ run.date }}</td>
+                        <td>{{ run.time }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="#">Run details page</a>
         {% endif %}
-    </h1>
 {% endblock %}
