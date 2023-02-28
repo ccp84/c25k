@@ -39,3 +39,4 @@ This PP4 app will be a runner registration tool for c25k groups.
 * [Lucid](https://lucid.app/) - Used to create ERD
 * Balsamiq - Used to create wireframes
 * paint.net - Used for image manipulation
+* [Codecademy django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - Use of generic edit views.
