@@ -17,7 +17,7 @@ class Run(models.Model):
         User, related_name='run_signup', blank=True)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['date']
 
     def __str__(self):
         return self.title + self.date
