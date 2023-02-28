@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1> Welcome</h1>
+    <h1>
+        {% if user.is_authenticated %}
+            <h1>Welcome {{ user.profile.name }}</h1>
+        {% else %}
+            <h1>Welcome Visitor</h1>
+            <p>You are not logged in</p>
+        {% endif %}
+    </h1>
 {% endblock %}
