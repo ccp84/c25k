@@ -11,12 +11,13 @@
                     <th>Time</th>
                 </tr>
                 {% for run in run_list %}
-                {% if forloop.counter <= 5 %}
-                    <tr>
-                        <td>{{ run.title }}</td>
-                        <td>{{ run.date }}</td>
-                        <td>{{ run.time }}</td>
-                    </tr>
+                    {% if forloop.counter <= 5 %}
+                        <tr>
+                            <td>{{ run.title }}</td>
+                            <td>{{ run.date }}</td>
+                            <td>{{ run.time }}</td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
             </table>
             <a href="#">Run details page</a>

@@ -5,7 +5,9 @@ from django.views.generic import ListView
 from .models import Run
 
 
-class RunList(ListView):
-    model = Run
-    queryset = Run.objects.all().order_by('-date')
-    template = 'home.html'
+def home(request):
+    run_list = Run.objects.all().order_by('-date')
+    context = {
+        "run_list": run_list
+    }
+    return render(request, 'home.html', context)
