@@ -2,7 +2,7 @@
 
 ## Concept 
 
-This PP4 app will be a runner registration tool for c25k groups. 
+This django app will be a runner registration tool for c25k groups. 
 * It will enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
 * It will allow run leaders to advertise the details of each weeks date, time and start location. As well as a brief overview of the run. 
 * It will allow logged in runners to sign up for posted runs, enabling run leaders to see who is planning on attending before setting off for each session. 
