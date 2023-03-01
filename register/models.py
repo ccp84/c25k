@@ -28,7 +28,7 @@ class Run(models.Model):
 
 class Profile(models.Model):
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='user_profile')
+        User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=50, blank=True)
     surname = models.CharField(max_length=50, blank=True)
     DOB = models.DateField(blank=True, null=True)

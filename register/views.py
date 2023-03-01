@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 from django.views.generic import ListView
-from .models import Run
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Run, Profile, User
 from datetime import datetime, timedelta
 
 
@@ -16,3 +17,9 @@ def home(request):
 
 class RunList(ListView):
     model = Run
+
+class RunCreate(CreateView):
+    model = Run
+    template_name = 'run_create.html'
+    fields = ["title", "leader", "location", "date", "time", "details"]
+    success_url = '/run/list'

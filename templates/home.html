@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to c25k</h1>
+    <h1>Welcome to c25k {{ user.username }}</h1>
     <p>Intro paragraph</p>
         {% if user.is_authenticated %}
             <table>

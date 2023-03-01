@@ -2,7 +2,27 @@
 
 {% block content %}
     <h1>Current Runs</h1>
-    {% for run in run_list %}
-        {{ run }}
-    {% endfor %}
+    <table>
+        <tr>
+            <th> Title </th>
+            <th> Location </th>
+            <th> Date </th>
+            <th> Time </th>
+            <th> Leader </th>
+            <th> Details </th>
+        </tr>
+        {% for run in run_list %}
+        <tr>
+            <td> {{ run.title }} </td>
+            <td> {{ run.location }} </td>
+            <td> {{ run.date }} </td>
+            <td> {{ run.time }} </td>
+            <td> {{ run.leader.username }} </td>
+            <td> {{ run.details }} </td>
+            <td> edit </td>
+            <td> delete </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'run_create' %}">Add a run</a>
 {% endblock %}
