@@ -24,3 +24,10 @@ class RunCreate(CreateView):
     template_name = 'run_create.html'
     fields = ["title", "leader", "location", "date", "time", "details"]
     success_url = '/run/list'
+
+
+class RunUpdate(UpdateView):
+    model = Run
+    template_name = 'run_update.html'
+    fields = ["title", "leader", "location", "date", "time", "details"]
+    success_url = '/run/list'
