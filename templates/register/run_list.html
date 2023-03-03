@@ -21,7 +21,7 @@
             <td> {{ run.details }} </td>
             {% if user.is_authenticated %}
                 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
-                <td> delete </td>
+                <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
             {% endif %}
         </tr>
         {% endfor %}

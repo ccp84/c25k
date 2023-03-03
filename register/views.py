@@ -31,3 +31,9 @@ class RunUpdate(UpdateView):
     template_name = 'run_update.html'
     fields = ["title", "leader", "location", "date", "time", "details"]
     success_url = '/run/list'
+
+
+class RunDelete(DeleteView):
+    model = Run
+    template_name = 'run_delete.html'
+    success_url = '/run/list'
