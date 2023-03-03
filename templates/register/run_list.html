@@ -17,7 +17,7 @@
             <td> {{ run.location }} </td>
             <td> {{ run.date }} </td>
             <td> {{ run.time }} </td>
-            <td> {{ run.leader.username }} </td>
+            <td> {{ run.leader.first_name }} </td>
             <td> {{ run.details }} </td>
             {% if user.is_authenticated %}
                 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
