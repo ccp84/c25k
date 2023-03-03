@@ -44,6 +44,18 @@ With a custom html template to display the correct elements to each user depende
 ```
 This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the grouo of leader can also access links to edit and delete runs from the list here, as well as adding a new run from the bottom of the list. 
 
+## Create Run
+This feature is only accessible by authenticated users who have a group tag of leader. It makes use of the django generic CBV 'CreateView':
+```python
+class RunCreate(CreateView):
+    model = Run
+    template_name = 'run_create.html'
+    fields = ["title", "leader", "location", "date", "time", "details"]
+    success_url = '/run/list'
+``` 
+and the standard form for this view, which will be styled in a later part of the project:
+![run_create_form](documentation/run_create_form.png)
+
 
 ## Testing
 
