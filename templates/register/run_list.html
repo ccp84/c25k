@@ -19,7 +19,7 @@
             <td> {{ run.time }} </td>
             <td> {{ run.leader.first_name }} </td>
             <td> {{ run.details }} </td>
-            {% if user.is_authenticated %}
+            {% if request.user.groups.all.0.name == 'leader' %}
                 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
                 <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
             {% endif %}
