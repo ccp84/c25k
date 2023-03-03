@@ -19,10 +19,14 @@
             <td> {{ run.time }} </td>
             <td> {{ run.leader.username }} </td>
             <td> {{ run.details }} </td>
-            <td> edit </td>
-            <td> delete </td>
+            {% if user.is_authenticated %}
+                <td> edit </td>
+                <td> delete </td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
+    {% if user.is_authenticated %}
     <a href="{% url 'run_create' %}">Add a run</a>
+    {% endif %}
 {% endblock %}
