@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
     <h1>Current Runs</h1>
     <table>
         <tr>
@@ -26,7 +27,10 @@
         </tr>
         {% endfor %}
     </table>
-    {% if user.is_authenticated %}
+    {% if request.user.groups.all.0.name == 'leader' %}
     <a href="{% url 'run_create' %}">Add a run</a>
     {% endif %}
+{% else %}
+    <p>Please log in</p>
+{% endif %}
 {% endblock %}
