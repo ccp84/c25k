@@ -3,7 +3,6 @@
 {% block content %}
     <h1>Welcome to c25k {{ user.username }}</h1>
     <p>Intro paragraph</p>
-        {% if user.is_authenticated %}
             <table>
                 <tr>
                     <th>Run</th>
@@ -20,5 +19,4 @@
                     {% endif %}
                 {% endfor %}
             </table>
-        {% endif %}
 {% endblock %}

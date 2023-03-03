@@ -18,6 +18,7 @@ def home(request):
 class RunList(ListView):
     model = Run
 
+
 class RunCreate(CreateView):
     model = Run
     template_name = 'run_create.html'
