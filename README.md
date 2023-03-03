@@ -56,6 +56,26 @@ class RunCreate(CreateView):
 and the standard form for this view, which will be styled in a later part of the project:
 ![run_create_form](documentation/run_create_form.png)
 
+## Edit Run
+This feature is very similar to the creation of a new run. It uses the generic django 'UpdateView':
+```python
+class RunUpdate(UpdateView):
+    model = Run
+    template_name = 'run_update.html'
+    fields = ["title", "leader", "location", "date", "time", "details"]
+    success_url = '/run/list'
+```
+and again imports the standard form as well. However, the URL associated with this view expects the primary key of the run as an identifier to ensure the correct entry in the database is being updated:
+```python
+path("run/update/<pk>", views.RunUpdate.as_view(), name='run_update')
+```
+This is passed in from the html template via the anchor tag:
+```html
+<td><a href="{% url 'run_update' run.id %}">Edit</a></td>
+```
+The result is not only that the correct database record is updated, but also that the rendered form is pre populated for editing:
+![run_edit_form](documentation/run_edit_form.png)
+
 
 ## Testing
 
