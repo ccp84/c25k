@@ -54,6 +54,7 @@ class RunCreate(CreateView):
     success_url = '/run/list'
 ``` 
 and the standard form for this view, which will be styled in a later part of the project:
+
 ![run_create_form](documentation/run_create_form.png)
 
 ## Edit Run
@@ -74,6 +75,7 @@ This is passed in from the html template via the anchor tag:
 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
 ```
 The result is not only that the correct database record is updated, but also that the rendered form is pre populated for editing:
+
 ![run_edit_form](documentation/run_edit_form.png)
 
 
