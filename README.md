@@ -78,6 +78,24 @@ The result is not only that the correct database record is updated, but also tha
 
 ![run_edit_form](documentation/run_edit_form.png)
 
+## Delete Run
+Working in an almost identical way to editing, deleting makes use of the generic 'DeleteView' in views:
+```python
+class RunDelete(DeleteView):
+    model = Run
+    template_name = 'run_delete.html'
+    success_url = '/run/list'
+```
+No fields are included this time as all the template needs is am input to delete the entire record. I have updated the standard template to include a link "back to safety" in case of accidental clicking. 
+The record to be deleted is identified by passing the primary key into the URL the same as when editing:
+```python
+path("run/delete/<pk>", views.RunDelete.as_view(), name='run_delete')
+```
+```html
+<td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
+```
+
+![run_delete_form](documentation/run_delete_form.png)
 
 ## Testing
 
@@ -95,4 +113,4 @@ The result is not only that the correct database record is updated, but also tha
 * paint.net - Used for image manipulation
 * [Codecademy django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - This course introduced me to the use of the generic CBV's for Create, Update and Delete.
 * [Code to filter by user group](https://stackoverflow.com/questions/73371568/how-to-check-user-group-in-django-template) - The code for filtering based on a users group was taken from this stack overflow article.
-*[Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
+* [Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
