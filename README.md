@@ -97,6 +97,34 @@ path("run/delete/<pk>", views.RunDelete.as_view(), name='run_delete')
 
 ![run_delete_form](documentation/run_delete_form.png)
 
+## Logging in / out
+
+For user authentication I have used the allauth library, implementing the techniques used in the Code Institute walkthrough project. 
+Once installed, and the allauth URLs imported into the project URLs.py document, log in / out is handled by the standard templates. To tidy these up and get them sitting within my main project base template I copied the allauth templates into my project and edited the `{% extends '' %}` line at the top of each of the default files. 
+
+![login_page](documentation/login.png)
+
+## Signup
+
+## Displaying system messages
+
+I have included django messages to be displayed at the top of my base template, so that the user is notified when they have successfully performed actions that trigger a system message. 
+```html
+{% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+{% endif %}
+```
+This sits above the content block so that they are visible no matter which page a user is on when messages are available. 
+
+![django_messages](documentation/messages.png)
+
 ## Testing
 
 ## Deployment
