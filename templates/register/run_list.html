@@ -21,7 +21,20 @@
             <td> {{ run.time }} </td>
             <td> {{ run.leader.first_name }} </td>
             <td> {{ run.details }} </td>
-            <td><a href="#"><i style="color: red;" class="fas fa-running"></i></a></td>
+            <td>
+                <form action="{% url 'run_join' run.id %}" method="POST">
+                    {% csrf_token %}
+                    {% if run.runners == request.user.id %}
+                        <button type="submit" name="run_id" value="{{run.id}}"> 
+                            <i style="color: greenyellow;" class="fas fa-running">In</i>
+                        </button>
+                    {% else %}
+                    <button type="submit" name="run_id" value="{{run.id}}"> 
+                        <i style="color: red;" class="fas fa-running">Out</i>
+                    </button>
+                    {% endif %}
+                </form>
+            </td>
             {% if request.user.groups.all.0.name == 'leader' %}
                 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
                 <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
