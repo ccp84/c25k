@@ -11,6 +11,7 @@
             <th> Time </th>
             <th> Leader </th>
             <th> Details </th>
+            <th> Count Me In !</th>
         </tr>
         {% for run in run_list %}
         <tr>
@@ -20,7 +21,7 @@
             <td> {{ run.time }} </td>
             <td> {{ run.leader.first_name }} </td>
             <td> {{ run.details }} </td>
-            <td><a href="#">I'm in!</a></td>
+            <td><a href="#"><i style="color: red;" class="fas fa-running"></i></a></td>
             {% if request.user.groups.all.0.name == 'leader' %}
                 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
                 <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
