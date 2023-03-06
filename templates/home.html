@@ -1,22 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to c25k {{ user.first_name }}</h1>
-    <p>Intro paragraph</p>
-            <table>
-                <tr>
-                    <th>Run</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                </tr>
-                {% for run in run_list %}
-                    {% if forloop.counter <= 5 %}
-                        <tr>
-                            <td>{{ run.title }}</td>
-                            <td>{{ run.date }}</td>
-                            <td>{{ run.time }}</td>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
+<h1>Welcome to c25k {{ user.first_name }}</h1>
+<p>This is a 9 week course to get you from complete beginner to running 30 minutes comfortably.
+    Our run leaders will be there to guide you each week. Use this app to find out when guided sessions
+    are taking place, find the right session for you each week, and sign up to let the leaders know you 
+    plan to join them.</p>
+<h2>Upcoming Runs</h2>
+<table>
+    <tr>
+        <th>Run</th>
+        <th>Date</th>
+    </tr>
+    {% for run in run_list %}
+    {% if forloop.counter <= 5 %}
+    <tr>
+        <td>{{ run.title }}</td>
+        <td>{{ run.date }}</td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% if not user.is_authenticated %}
+<p>Please log in to access the run details page.</p>
+{% endif %}
 {% endblock %}
