@@ -29,6 +29,8 @@
         {% endif %}
     </tr>
     {% endif %}
+    {% empty %}
+    <p>No current runs</p>
     {% endfor %}
 </table>
 {% if not user.is_authenticated %}

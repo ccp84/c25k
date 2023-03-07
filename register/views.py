@@ -9,7 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 
 
 def home(request):
-    run_list = Run.objects.all().order_by('-date')
+    run_list = Run.objects.all().order_by('date')
     context = {
         "run_list": run_list
     }
