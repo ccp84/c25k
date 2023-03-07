@@ -25,6 +25,13 @@ class Run(models.Model):
     def num_of_runners(self):
         return self.runners.count()
 
+    def signed_up(self):
+        name_list = []
+        runner_list = self.runners.all()
+        for runner in runner_list:
+            name_list.append(runner.id)
+        return name_list
+
 
 class Profile(models.Model):
     user = models.ForeignKey(
