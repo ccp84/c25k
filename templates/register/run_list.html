@@ -30,7 +30,7 @@
         <td> {{ run.details }} </td>
     </tr>
     <tr>
-        <th> Count Me In !</th>
+        <th> Count Me In!</th>
         <td>
             <form action="{% url 'run_join' run.id %}" method="POST">
                 {% csrf_token %}
@@ -48,8 +48,9 @@
     </tr>
     <tr>
         {% if request.user.groups.all.0.name == 'leader' %}
-        <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
-        <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
+        <td></td>
+        <td><a href="{% url 'run_update' run.id %}">Edit</a>
+        <a href="{% url 'run_delete' run.id %}">Delete</a></td>
         {% endif %}
     </tr>
 </table>
