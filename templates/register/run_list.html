@@ -3,30 +3,40 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Current Runs</h1>
+{% for run in run_list %}
 <table>
     <tr>
         <th> Title </th>
-        <th> Location </th>
-        <th> Date </th>
-        <th> Time </th>
-        <th> Leader </th>
-        <th> Details </th>
-        <th> Count Me In !</th>
-    </tr>
-    {% for run in run_list %}
-    <tr>
         <td> {{ run.title }} </td>
+    </tr>
+    <tr>
+        <th> Location </th>
         <td> {{ run.location }} </td>
+    </tr>
+    <tr>
+        <th> Date </th>
         <td> {{ run.date }} </td>
+    </tr>
+    <tr>
+        <th> Time </th>
         <td> {{ run.time }} </td>
+    </tr>
+    <tr>
+        <th> Leader </th>
         <td> {{ run.leader.first_name }} </td>
+    </tr>
+    <tr>
+        <th> Details </th>
         <td> {{ run.details }} </td>
+    </tr>
+    <tr>
+        <th> Count Me In !</th>
         <td>
             <form action="{% url 'run_join' run.id %}" method="POST">
                 {% csrf_token %}
                 {% if user.id in run.signed_up %}
                 <button type="submit" name="run_id" value="{{run.id}}">
-                    <i style="color: greenyellow;" class="fas fa-running">In</i>
+                    <i style="color: green;" class="fas fa-running">In</i>
                 </button>
                 {% else %}
                 <button type="submit" name="run_id" value="{{run.id}}">
@@ -35,13 +45,15 @@
                 {% endif %}
             </form>
         </td>
+    </tr>
+    <tr>
         {% if request.user.groups.all.0.name == 'leader' %}
         <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
         <td><a href="{% url 'run_delete' run.id %}">Delete</a></td>
         {% endif %}
     </tr>
-    {% endfor %}
 </table>
+{% endfor %}
 {% if request.user.groups.all.0.name == 'leader' %}
 <a href="{% url 'run_create' %}">Add a run</a>
 {% endif %}
