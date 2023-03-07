@@ -49,9 +49,11 @@ def run_join(request, pk):
 
     if run.runners.filter(id=request.user.id).exists():
         run.runners.remove(request.user)
-        messages.add_message(request, messages.INFO, 'You have been removed from the run list')
+        messages.add_message(
+            request, messages.INFO, 'You have been removed from the run list')
     else:
         run.runners.add(request.user)
-        messages.add_message(request, messages.INFO, 'You have been added to the run list')
+        messages.add_message(
+            request, messages.INFO, 'You have been added to the run list')
 
     return HttpResponseRedirect(reverse('run_list'))
