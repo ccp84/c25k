@@ -125,6 +125,49 @@ This sits above the content block so that they are visible no matter which page 
 
 ![django_messages](documentation/messages.png)
 
+## Runner sign up
+Signing up for runs is achieved in 2 parts. 
+
+### Step 1: The runner clicks "Count me in / out" 
+This uses a new view called `run_join` which queries the `run.runners` field of the Run database filtering by `user.id`. If that user is not found within the returned queryset, then the user's id is added to the list, else if the user is already contained within the results then they are removed. The view returns to the `run_list` page once it has completed its function. 
+```python
+def run_join(request, pk):
+    run = get_object_or_404(Run, id=pk)
+
+    if run.runners.filter(id=request.user.id).exists():
+        run.runners.remove(request.user)
+    else:
+        run.runners.add(request.user)
+
+    return HttpResponseRedirect(reverse('run_list'))
+```
+
+### Step 2: Displaying to the user if they are currently signed up or not
+An additional database method was needed to achieve this. 
+```python
+def signed_up(self):
+        name_list = []
+        runner_list = self.runners.all()
+        for runner in runner_list:
+            name_list.append(runner.id)
+        return name_list
+```
+A list `runner_list` is populated from running a query to retrieve all currently linked users on the many:many `run.runners` field. Then to return useable data to the django template, this list is iterated and the user id field for each object contained in the link is pushed into a blank list `name_list`. This is then returned by the method and is ready for use when called in the template.
+```html
+{% if user.id in run.signed_up %}
+                <button type="submit" name="run_id" value="{{run.id}}">
+                    <i style="color: greenyellow;" class="fas fa-running">In</i>
+                </button>
+                {% else %}
+                <button type="submit" name="run_id" value="{{run.id}}">
+                    <i style="color: red;" class="fas fa-running">Out</i>
+                </button>
+{% endif %}
+```
+The returned list is checked for the currently logged in user id. If found a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. 
+
+![count_me_in](documentation/count_me_in.png)
+
 ## Testing
 
 ## Deployment
