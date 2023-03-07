@@ -186,3 +186,4 @@ The returned list is checked for the currently logged in user id. If found a gre
 * [Code to filter by user group](https://stackoverflow.com/questions/73371568/how-to-check-user-group-in-django-template) - The code for filtering based on a users group was taken from this stack overflow article.
 * [Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
 * [Font Awesome](https://fontawesome.com/) - Icons used throughout the project.
+* [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the django documentation here.
