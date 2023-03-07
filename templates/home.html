@@ -4,7 +4,7 @@
 <h1>Welcome to c25k {{ user.first_name }}</h1>
 <p>This is a 9 week course to get you from complete beginner to running 30 minutes comfortably.
     Our run leaders will be there to guide you each week. Use this app to find out when guided sessions
-    are taking place, find the right session for you each week, and sign up to let the leaders know you 
+    are taking place, find the right session for you each week, and sign up to let the leaders know you
     plan to join them.</p>
 <h2>Upcoming Runs</h2>
 <table>
@@ -17,6 +17,16 @@
     <tr>
         <td>{{ run.title }}</td>
         <td>{{ run.date }}</td>
+        {% if user.is_authenticated %}
+        <td>
+            {% if user.id in run.signed_up %}
+            <i style="color: green;" class="fas fa-running"></i>
+            {% else %}
+            <i style="color: red;" class="fas fa-running"></i>
+            {% endif %}
+            </form>
+        </td>
+        {% endif %}
     </tr>
     {% endif %}
     {% endfor %}
