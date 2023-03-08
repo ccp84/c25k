@@ -11,7 +11,7 @@ class Run(models.Model):
         User, on_delete=models.CASCADE, related_name='run_leader')
     location = models.CharField(max_length=100)
     date = models.DateField()
-    time = models.TimeField()
+    time = models.TimeField(help_text='HH:MM')
     details = models.TextField(blank=True)
     runners = models.ManyToManyField(
         User, related_name='run_signup', blank=True)
