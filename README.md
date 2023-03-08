@@ -27,6 +27,14 @@ This django app will be a runner registration tool for c25k groups.
 
 ## Project Development
 
+## REVIEW POINT 1
+|At this initial review point. I have prioritised the 'must have' user stories:| ![project_review_1](documentation/project_review_1.png) |
+| ----------------------------------- | ----------------------------------------- |
+| 1. Landing page | 
+| 2. Display a run list |
+| 3. Add, edit, delete runs|
+| 4. User Authentication | 
+
 ### Run List 
 This feature has been developed using the django generic CBV 'ListView':
 ```python
@@ -44,7 +52,7 @@ With a custom html template to display the correct elements to each user depende
 ```
 This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the grouo of leader can also access links to edit and delete runs from the list here, as well as adding a new run from the bottom of the list. 
 
-## Create Run
+### Create Run
 This feature is only accessible by authenticated users who have a group tag of leader. It makes use of the django generic CBV 'CreateView':
 ```python
 class RunCreate(CreateView):
@@ -57,7 +65,7 @@ and the standard form for this view, which will be styled in a later part of the
 
 ![run_create_form](documentation/run_create_form.png)
 
-## Edit Run
+### Edit Run
 This feature is very similar to the creation of a new run. It uses the generic django 'UpdateView':
 ```python
 class RunUpdate(UpdateView):
@@ -78,7 +86,7 @@ The result is not only that the correct database record is updated, but also tha
 
 ![run_edit_form](documentation/run_edit_form.png)
 
-## Delete Run
+### Delete Run
 Working in an almost identical way to editing, deleting makes use of the generic 'DeleteView' in views:
 ```python
 class RunDelete(DeleteView):
@@ -97,16 +105,27 @@ path("run/delete/<pk>", views.RunDelete.as_view(), name='run_delete')
 
 ![run_delete_form](documentation/run_delete_form.png)
 
-## Logging in / out
+### Logging in / out
 
 For user authentication I have used the allauth library, implementing the techniques used in the Code Institute walkthrough project. 
 Once installed, and the allauth URLs imported into the project URLs.py document, log in / out is handled by the standard templates. To tidy these up and get them sitting within my main project base template I copied the allauth templates into my project and edited the `{% extends '' %}` line at the top of each of the default files. 
 
 ![login_page](documentation/login.png)
 
-## Signup
+### Signup
 
-## Displaying system messages
+
+## REVIEW POINT 2
+|At this point I have completed all project must have criteria and moved those user stories to completed. 
+Looking at the next stage of project features, I will prioritise the should have user stories as follows:| ![review_point_2](documentation/project_review_2.png) |
+| -------------------------------------------- | ------------------------------------- |
+| 1. Adding the ability for a user to sign up to a run |
+| 2. Adding a feature for the run leader to see a register / list of signed up runners |
+| 3. Allowing users to update their profile information |
+| 4. Applying styling for an overall site theme |
+
+
+### Displaying system messages
 
 I have included django messages to be displayed at the top of my base template, so that the user is notified when they have successfully performed actions that trigger a system message. 
 ```html
@@ -125,10 +144,10 @@ This sits above the content block so that they are visible no matter which page 
 
 ![django_messages](documentation/messages.png)
 
-## Runner sign up
+### Runner sign up
 Signing up for runs is achieved in 2 parts. 
 
-### Step 1: The runner clicks "Count me in / out" 
+#### Step 1: The runner clicks "Count me in / out" 
 This uses a new view called `run_join` which queries the `run.runners` field of the Run database filtering by `user.id`. If that user is not found within the returned queryset, then the user's id is added to the list, else if the user is already contained within the results then they are removed. The view returns to the `run_list` page once it has completed its function. 
 ```python
 def run_join(request, pk):
@@ -142,7 +161,7 @@ def run_join(request, pk):
     return HttpResponseRedirect(reverse('run_list'))
 ```
 
-### Step 2: Displaying to the user if they are currently signed up or not
+#### Step 2: Displaying to the user if they are currently signed up or not
 An additional database method was needed to achieve this. 
 ```python
 def signed_up(self):
