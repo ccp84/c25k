@@ -183,9 +183,29 @@ A list `runner_list` is populated from running a query to retrieve all currently
                 </button>
 {% endif %}
 ```
-The returned list is checked for the currently logged in user id. If found a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. 
+The returned list is checked for the currently logged in user id. If found, a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. 
 
 ![count_me_in](documentation/count_me_in.png)
+
+### Viewing a run register
+Leaders are able to see a list of runners signed up for each run in the leader only view of the run list page. A function returns a list of names from the Run table:
+```python
+def take_register(self):
+    register = []
+    runner_list = self.runners.all()
+    for runner in runner_list:
+        register.append([runner.first_name, runner.last_name])
+    return register
+```
+This function is then used to produce a list of names linked to each run:
+```html
+<ul>
+    {% for runner in run.take_register %}
+        <li>{{ runner.0 }} {{ runner.1 }}</li>
+    {% endfor %}
+</ul>
+```
+![runner_list](documentation/runner_list.png)
 
 ## Testing
 
