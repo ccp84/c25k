@@ -72,7 +72,7 @@
                     <td>
                         <ul>
                             {% for runner in run.take_register %}
-                            <li>{{ runner }}</li>
+                            <li>{{ runner.0 }} {{ runner.1 }}</li>
                             {% endfor %}
                     </ul>
                     </td>
