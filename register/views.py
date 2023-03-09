@@ -90,3 +90,14 @@ class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     def get_queryset(self):
         query_set = Profile.objects.filter(user=self.request.user)
         return query_set
+
+
+class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    model = Profile
+    template_name = 'profile_delete.html'
+    success_url = '/profile'
+    success_message = "Profile Deleted"
+
+    def get_queryset(self):
+        query_set = Profile.objects.filter(user=self.request.user)
+        return query_set

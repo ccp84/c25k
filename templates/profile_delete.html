@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>WARNING: Do you really want to delete?</h2>
+<form method="post">
+    <div>
+        {% csrf_token %} {{ form.as_p }}
+        <input type="submit" value="Yes" />
+    </div>
+</form>
+<a href="{% url 'profile' %}">Return to safety</a>
+{% endblock %}
