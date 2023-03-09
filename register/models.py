@@ -10,7 +10,7 @@ class Run(models.Model):
     leader = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='run_leader')
     location = models.CharField(max_length=100)
-    date = models.DateField(help_text='MM:DD:YYYY')
+    date = models.DateField(help_text='DD/MM/YYYY')
     time = models.TimeField(help_text='HH:MM')
     details = models.TextField(blank=True)
     runners = models.ManyToManyField(
