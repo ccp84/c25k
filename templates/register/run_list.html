@@ -64,7 +64,8 @@
                 {% if request.user.groups.all.0.name == 'leader' %}
                 <th>Leader Options</th>
                 <td><a href="{% url 'run_update' run.id %}">Edit</a>
-                    <a href="{% url 'run_delete' run.id %}">Delete</a></td>
+                    <a href="{% url 'run_delete' run.id %}">Delete</a>
+                    {{ run.take_register }} </td>
                 {% endif %}
             </tr>
         </tbody>

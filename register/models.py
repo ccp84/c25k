@@ -32,6 +32,13 @@ class Run(models.Model):
             name_list.append(runner.id)
         return name_list
 
+    def take_register(self):
+            register = []
+            runner_list = self.runners.all()
+            for runner in runner_list:
+                register.append([runner.first_name, runner.last_name])
+            return register
+
 
 class Profile(models.Model):
     user = models.ForeignKey(
