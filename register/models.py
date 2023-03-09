@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 USER_TYPE = ((0, 'Runner'), (1, 'Leader'))
@@ -43,8 +45,6 @@ class Run(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='profile')
-    first_name = models.CharField(max_length=50, blank=True)
-    surname = models.CharField(max_length=50, blank=True)
     DOB = models.DateField(blank=True, null=True)
     ICE = models.CharField(max_length=20, blank=True)
     medical = models.TextField(blank=True)
@@ -52,15 +52,15 @@ class Profile(models.Model):
     completed = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
-        return f"{self.first_name} | Status: {self.user_type}"
+        return self.user.first_name
 
     def toggle_status(self):
         if self.user_type == 0:
             self.user_type = 1
-            return f"{self.first_name} is now set as a run leader"
+            return f"{self.user.first_name} is now set as a run leader"
         elif self.user_type == 1:
             self.user_type = 0
-            return f"{self.first_name} is now set as a runner"
+            return f"{self.user.first_name} is now set as a runner"
         else:
             return "Invalid user type set"
 

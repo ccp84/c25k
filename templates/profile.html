@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for details in profile %}
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <th>
+                    <h2>User Profile for {{ details.user.first_name }}</h2>
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ details.DOB }}</td>
+                </tr>
+                <tr>
+                    <td>{{ details.ICE }}</td>
+                </tr>
+                <tr>
+                    <td>{{ details.medical }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a href="#"><button type="button" class="btn btn-secondary">Update Details</button></a>
+        <a href="#"><button type="button" class="btn btn-danger">Delete Profile</button></a>
+    </div>
+</div>
+{% empty %}
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'profile_create' %}"><button type="button" class="btn btn-secondary">Create Your
+                Profile</button></a>
+    </div>
+</div>
+{% endfor %}
+
+
+{% endblock %}
