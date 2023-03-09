@@ -4,8 +4,10 @@ from django import forms
 # Code taken from:
 # https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth
 class SignupForm(forms.Form):
-    first_name = forms.CharField(max_length=30, label='First Name')
-    last_name = forms.CharField(max_length=30, label='Last Name')
+    first_name = forms.CharField(
+        max_length=30, label='First Name', required=True)
+    last_name = forms.CharField(
+        max_length=30, label='Last Name', required=True)
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
