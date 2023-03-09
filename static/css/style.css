@@ -1,3 +1,4 @@
 textarea {
     max-width: 80%;
+    resize: horizontal;
 }
