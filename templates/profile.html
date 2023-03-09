@@ -7,17 +7,21 @@
         <table class="table">
             <thead>
                 <th>
-                    <h2>User Profile for {{ details.user.first_name }}</h2>
+                    <h2>User Profile for {{ details.user.first_name }} {{ details.user.last_name }}</h2>
                 </th>
+                <td></td>
             </thead>
             <tbody>
                 <tr>
+                    <th>DOB:</th>
                     <td>{{ details.DOB }}</td>
                 </tr>
                 <tr>
+                    <th>ICE:</th>
                     <td>{{ details.ICE }}</td>
                 </tr>
                 <tr>
+                    <th>Medical:</th>
                     <td>{{ details.medical }}</td>
                 </tr>
             </tbody>
