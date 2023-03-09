@@ -78,3 +78,15 @@ class ProfileView(LoginRequiredMixin, View):
         profile = Profile.objects.filter(user__id=request.user.id)
 
         return render(request, 'profile.html', {'profile': profile})
+
+
+class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Profile
+    template_name = 'profile_update.html'
+    fields = ['DOB', 'ICE', 'medical']
+    success_url = '/profile'
+    success_message = 'Profile Updated'
+
+    def get_queryset(self):
+        query_set = Profile.objects.filter(user=self.request.user)
+        return query_set

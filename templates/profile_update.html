@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-8">
+        <h2>Edit Profile</h2>
+        <form method="post">
+            <div>
+                <table class="table">
+                    {% csrf_token %} {{ form.as_table }}
+                </table>
+                <input type="submit" value="Update" />
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
