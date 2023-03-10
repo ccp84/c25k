@@ -20,6 +20,7 @@ def home(request):
 class RunList(ListView):
 
     model = Run
+    template_name = 'run_list.html'
 
 
 class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
