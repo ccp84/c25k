@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if request.user.groups.all.0.name == 'leader' %}
 <h2>Edit a run</h2>
 <form method="post">
     <div>
@@ -10,4 +11,8 @@
         <input type="submit" value="Submit" />
     </div>
 </form>
+{% else %}
+<p>You must be a leader to access this form</p>
+<a href="{% url 'run_list' %}">Return to run list</a>
+{% endif %}
 {% endblock %}
