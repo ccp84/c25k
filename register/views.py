@@ -7,6 +7,7 @@ from .models import Run, Profile, User
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import ProfileForm, RunForm
 
 
 def home(request):
@@ -26,7 +27,7 @@ class RunList(ListView):
 class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Run
     template_name = 'run_create.html'
-    fields = ["title", "leader", "location", "date", "time", "details"]
+    form_class = RunForm
     success_url = '/run/list'
     success_message = "Run created"
 
@@ -64,7 +65,7 @@ def run_join(request, pk):
 class ProfileCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Profile
     template_name = 'profile_create.html'
-    fields = ['DOB', 'ICE', 'medical']
+    form_class = ProfileForm
     success_url = '/profile'
     success_message = "Profile Updated"
 

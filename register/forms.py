@@ -1,5 +1,29 @@
 from django import forms
-from .models import Profile
+from .models import Profile, Run
+
+
+class DateInput(forms.DateInput):
+    input_type = "date"
+
+
+class ProfileForm(forms.ModelForm):
+    """ Form for adding a user profile. """
+    class Meta:
+        model = Profile
+        widgets = {
+            "DOB": DateInput(),
+        }
+        fields = ['DOB', 'ICE', 'medical']
+
+
+class RunForm(forms.ModelForm):
+    """Form for adding a new run. """
+    class Meta:
+        model = Run
+        widgets = {
+            "date": DateInput(),
+        }
+        fields = ["title", "leader", "location", "date", "time", "details"]
 
 
 # Code taken from:
