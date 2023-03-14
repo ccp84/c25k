@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>WARNING: Do you really want to delete?</h2>
+<div class="jumbotron">
+<h2>WARNING</h2>
+<p>Do you really want to delete profile data?</p>
 <form method="post">
     <div>
         {% csrf_token %} {{ form.as_p }}
-        <input type="submit" value="Yes" />
+        <input type="submit" class="btn btn-warning" value="Yes" />
+        <a href="{% url 'profile' %}"><button type="button" class="btn btn-success">Return to Safety</button></a>
     </div>
 </form>
-<a href="{% url 'profile' %}">Return to safety</a>
+</div>
 {% endblock %}

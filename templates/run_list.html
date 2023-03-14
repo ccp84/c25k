@@ -69,7 +69,7 @@
                 </tr>
                 <tr>
                     <th>Signed up:</th>
-                    <td>
+                    <td>{{ run.num_of_runners }}
                         <ul>
                             {% for runner in run.take_register %}
                             <li>{{ runner.0 }} {{ runner.1 }}</li>
