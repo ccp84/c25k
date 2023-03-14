@@ -2,15 +2,17 @@
 
 {% block content %}
 {% if request.user.groups.all.0.name == 'leader' %}
-<h2>WARNING: Do you really want to delete?</h2>
+<div class="jumbotron">
+    <h2>WARNING: Do you really want to delete?</h2>
+</div>
 <form method="post">
     <div>
-        <h3>{{ run.title }}</h3>
+        <h3>Run : {{ run.title }}</h3>
         {% csrf_token %} {{ form.as_p }}
-        <input type="submit" value="Yes" />
+        <input type="submit" class="btn btn-warning" value="Yes" />
+        <a href="{% url 'run_list' %}"><button type="button" class="btn btn-success">Return to Safety</button></a>
     </div>
 </form>
-<a href="{% url 'run_list' %}">Return to safety</a>
 {% else %}
 <p>You must be a leader to access this form</p>
 <a href="{% url 'run_list' %}">Return to run list</a>
