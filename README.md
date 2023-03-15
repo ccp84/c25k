@@ -2,17 +2,28 @@
 
 ## Concept 
 
-This django app will be a runner registration tool for c25k groups. 
-* It will enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
-* It will allow run leaders to advertise the details of each weeks date, time and start location. As well as a brief overview of the run. 
-* It will allow logged in runners to sign up for posted runs, enabling run leaders to see who is planning on attending before setting off for each session. 
+This django app will be a runner registration tool for c25k groups. Currently leaders have to rely on Whatsapp group chats to know if the participants are attending each session or not and can be left waiting around for runners they think are due to attend who either haven't posted in the chat group that they aren't coming, have said they are unable to come but the leaders have missed the message, or have previously said they were coming and changed their mind but not notified the leader. Similiarly, participants who are running late but who the leader doesn't know to wait for may find that the group has already left the start point if they miss the start time. This project aims to fix that as its core aim.
+
+## Project Scope
+
+* It will allow run leaders to advertise the details of each weeks date, time and start location. As well as giving any additional details such as parking facilities, if trail shoes are needed, or other key information to be relayed before the start.
+* It will allow site visitors to view a basic list of the planned activities, and register for a user account to gain access to further detail.
+* It will allow logged in runners to see all of the details the leader has posted about the run.
+* It should allow logged in runners to sign up and state that they are planning on attending a run / remove their name from the list if they change their mind. 
+* It should allow leaders to view a list of runners who are planning to attend each session. 
+* It should allow registered users to view and edit their details. 
+* The overall site should be styled in Joggers green and yellow on completion and function with mobile first design in mind.
 * It could be used to mark runners as completed to maintain a list of graduates within the database, and list graduate runs following on from the main course. 
-* It could be used for runners to add an emergency contact to their account which run leaders will be able to access during sessions in case of incident during the run. 
-* The overall site will be styled in Joggers green and yellow on completion and function with mobile first design in mind. 
+* It could be used for runners to add an emergency contact to their account which run leaders will be able to access during sessions in case of incident during the run.  
+* It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the adin panel. 
+* It could enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
+
+These functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
 
 ## Table of Contents:
 1. [Wireframes](#wireframes)
 2. [Data Model](#data-model)
+3. [Project Development](#project-development)
 
 ## Wireframes
 * Welcome Page Views
@@ -40,6 +51,7 @@ This feature has been developed using the django generic CBV 'ListView':
 ```python
 class RunList(ListView):
     model = Run
+    template = 'run_list.html'
 ```
 With a custom html template to display the correct elements to each user dependent on their authentication status:
 ```python
@@ -55,24 +67,26 @@ This page hosts the main functionality of the project allowing only authenticate
 ### Create Run
 This feature is only accessible by authenticated users who have a group tag of leader. It makes use of the django generic CBV 'CreateView':
 ```python
-class RunCreate(CreateView):
+class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Run
     template_name = 'run_create.html'
     fields = ["title", "leader", "location", "date", "time", "details"]
     success_url = '/run/list'
+    success_message = "Run created"
 ``` 
 and the standard form for this view, which will be styled in a later part of the project:
 
 ![run_create_form](documentation/run_create_form.png)
 
 ### Edit Run
-This feature is very similar to the creation of a new run. It uses the generic django 'UpdateView':
+This feature is very similar to the creation of a new run, and can only be accessed by authenticated users who are leaders. It uses the generic django 'UpdateView':
 ```python
-class RunUpdate(UpdateView):
+class RunUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Run
     template_name = 'run_update.html'
     fields = ["title", "leader", "location", "date", "time", "details"]
     success_url = '/run/list'
+    success_message = "Run updated"
 ```
 and again imports the standard form as well. However, the URL associated with this view expects the primary key of the run as an identifier to ensure the correct entry in the database is being updated:
 ```python
@@ -89,12 +103,13 @@ The result is not only that the correct database record is updated, but also tha
 ### Delete Run
 Working in an almost identical way to editing, deleting makes use of the generic 'DeleteView' in views:
 ```python
-class RunDelete(DeleteView):
+class RunDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     model = Run
     template_name = 'run_delete.html'
     success_url = '/run/list'
+    success_message = "Run deleted"
 ```
-No fields are included this time as all the template needs is am input to delete the entire record. I have updated the standard template to include a link "back to safety" in case of accidental clicking. 
+No fields are included this time as all the template needs is an input to delete the entire record. I have updated the standard template to include a link "back to safety" in case of accidental clicking. 
 The record to be deleted is identified by passing the primary key into the URL the same as when editing:
 ```python
 path("run/delete/<pk>", views.RunDelete.as_view(), name='run_delete')
@@ -114,6 +129,24 @@ Once installed, and the allauth URLs imported into the project URLs.py document,
 
 ### Signup
 
+Signing up for an account also uses allauth, however I have modified the standard allauth template so that the user is forced to complete a firstname and lastname (which are standard in the allauth library just not included in the standard signup process.)
+
+The code added to forms.py to achieve this is :
+```python
+class SignupForm(forms.Form):
+    first_name = forms.CharField(
+        max_length=30, label='First Name', required=True)
+    last_name = forms.CharField(
+        max_length=30, label='Last Name', required=True)
+
+    def signup(self, request, user):
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+```
+For my project, a first and last name are required when signing up for runs so the leader knows who is attending. It made more sense to use the built in allauth fields than to include these in the separate Profile model. The code to implement this was found following [this thread](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) on stack overflow.
+
+![sign up](documentation/sign_up.png)
 
 ## REVIEW POINT 2
 |At this point I have completed all project must have criteria and moved those user stories to completed. 
@@ -183,7 +216,7 @@ A list `runner_list` is populated from running a query to retrieve all currently
                 </button>
 {% endif %}
 ```
-The returned list is checked for the currently logged in user id. If found, a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. 
+The returned list is checked for the currently logged in user id. If found, a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. PLEASE NOTE : The in line styling will be removed when custom CSS is added to the project later, however for the purposes of getting this feature to work this is the quickest way to test functionality for now. 
 
 ![count_me_in](documentation/count_me_in.png)
 
@@ -206,6 +239,81 @@ This function is then used to produce a list of names linked to each run:
 </ul>
 ```
 ![runner_list](documentation/runner_list.png)
+
+### Creating a user profile
+The user profile page checks for existing details in a retrieved user profile, if the returned profile is empty then the create profile link is displayed. 
+```html
+{% empty %}
+<div class="row">
+    <div class="col-12">
+        <a href="{% url 'profile_create' %}"><button type="button" class="btn btn-secondary">Create Your
+                Profile</button></a>
+    </div>
+</div>
+```
+This view uses the generic create view, and rather than displaying user as a field, adds the currently logged in user when the form is returned to create the foreign key link between Profile and User tables.
+```python
+class ProfileCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Profile
+    template_name = 'profile_create.html'
+    fields = ['DOB', 'ICE', 'medical']
+    success_url = '/profile'
+    success_message = "Profile Updated"
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+```
+![profile_create](documentation/profile_create.png)
+
+### Viewing a user profile
+Once a user has created a profile, the profile page displays their user details to them. The Profile table is filtered with the currently logged in users id and the relevant instance returned as context for display. 
+```python
+class ProfileView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        profile = Profile.objects.filter(user__id=request.user.id)
+
+        return render(request, 'profile.html', {'profile': profile})
+```
+![profile view](documentation/profile_view.png)
+
+### Updating a user profile
+Users have the option to update their details, updating uses the generic Update view. Instead of relying on the primary key passed through in the URL to populate the form for updating however, I have used a queryset which takes the currently logged in user id to return that users details. This means that even if you were to change the URL manually you would be unable to view another runners profile page. 
+```python
+class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = Profile
+    template_name = 'profile_update.html'
+    fields = ['DOB', 'ICE', 'medical']
+    success_url = '/profile'
+    success_message = 'Profile Updated'
+
+    def get_queryset(self):
+        query_set = Profile.objects.filter(user=self.request.user)
+        return query_set
+```
+As you can see here, the id is 20 when followed although this isnt what is returning the data into the form. But currently all is working:
+
+![profile_edit_ok](documentation/profile_edit_success.png)
+
+If I change the URL manually to try and access another users data, I will get an error and not be allowed to view this page:
+
+![profile_edit_error](documentation/profile_edit_error.png)
+
+### Deleting a user profile
+Users also have the option to completely delete the additional information held about them. As there is no need for a form to be populated for this, the page simply gives a warning with a button to either action the deletion or return to safety. The same checking is in place for this function with a queryset used to ensure that the user can only delete their own profile and not try to access a different user profile by manually changing the URL. 
+```python
+class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
+    model = Profile
+    template_name = 'profile_delete.html'
+    success_url = '/profile'
+    success_message = "Profile Deleted"
+
+    def get_queryset(self):
+        query_set = Profile.objects.filter(user=self.request.user)
+        return query_set
+```
+![profile delete](documentation/profile_delete.png)
 
 ## Testing
 
