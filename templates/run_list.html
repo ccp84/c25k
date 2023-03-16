@@ -2,93 +2,69 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="row">
-    <div class="col-sm-6">
-        <h1>Current Runs</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>Current Runs</h1>
+        </div>
+        <div class="col-sm-6">
+            {% if request.user.groups.all.0.name == 'leader' %}
+            <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
+            {% endif %}
+        </div>
     </div>
-    <div class="col-sm-6">
-        {% if request.user.groups.all.0.name == 'leader' %}
-        <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
-        {% endif %}
-    </div>
-</div>
-<div class="row">
-    {% for run in run_list %}
-    <div class="col-sm-6 col-lg-4">
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th> Title </th>
-                    <th> {{ run.title }} </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th> Location </th>
-                    <td> {{ run.location }} </td>
-                </tr>
-                <tr>
-                    <th> Date </th>
-                    <td> {{ run.date }} </td>
-                </tr>
-                <tr>
-                    <th> Time </th>
-                    <td> {{ run.time }} </td>
-                </tr>
-                <tr>
-                    <th> Leader </th>
-                    <td> {{ run.leader.first_name }} </td>
-                </tr>
-                <tr>
-                    <th> Details </th>
-                    <td> {{ run.details }} </td>
-                </tr>
-                <tr>
-                    <th> Count Me In!</th>
-                    <td>
+    <div class="row">
+        {% for run in run_list %}
+        <div class="col-sm-6 col-lg-4">
+            <div class="card text-center">
+                <div class="card-header">
+                    {{ run.title }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Date: {{ run.date }} | Time: {{ run.time }}</h5>
+                    <p class="card-text">Location: {{ run.location }}</p>
+                    <p class="card-text">Leader: {{ run.leader.first_name }}</p>
+                    <p class="card-text">Details: {{ run.details }}</p>
+                    <div class="card-text">Count me in!
                         <form action="{% url 'run_join' run.id %}" method="POST">
                             {% csrf_token %}
                             {% if user.id in run.signed_up %}
-                            <button type="submit" name="run_id" value="{{run.id}}">
-                                <i style="color: green;" class="fas fa-running">In</i>
+                            <button type="submit" class="btn bg-success" name="run_id" value="{{run.id}}">
+                                <i class="fas fa-running"></i>
                             </button>
                             {% else %}
-                            <button type="submit" name="run_id" value="{{run.id}}">
-                                <i style="color: red;" class="fas fa-running">Out</i>
+                            <button type="submit" class="btn bg-danger shadow-sm" name="run_id" value="{{run.id}}">
+                                <i class="fas fa-running">Out</i>
                             </button>
                             {% endif %}
                         </form>
-                    </td>
-                </tr>
-                <tr>
-                    {% if request.user.groups.all.0.name == 'leader' %}
-                    <th>Leader Options</th>
-                    <td><a href="{% url 'run_update' run.id %}" class="btn btn-warning">Edit</a>
-                        <a href="{% url 'run_delete' run.id %}" class="btn btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Signed up:</th>
-                    <td>{{ run.num_of_runners }}
-                        <ul>
-                            {% for runner in run.take_register %}
-                            <li>{{ runner.0 }} {{ runner.1 }}</li>
-                            {% endfor %}
+                    </div>
+                </div>
+                {% if request.user.groups.all.0.name == 'leader' %}
+                <div class="card-footer text-muted">
+                    <h5>Leader Options</h5>
+                    Signed up: {{ run.num_of_runners }}
+                    <ul>
+                        {% for runner in run.take_register %}
+                        <li>{{ runner.0 }} {{ runner.1 }}</li>
+                        {% endfor %}
                     </ul>
-                    </td>
+                    <div>
+                        <a href="{% url 'run_update' run.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'run_delete' run.id %}" class="btn btn-danger">Delete</a>
+                    </div>
                     {% endif %}
-                </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No current runs</p>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>No current runs</p>
-    {% endfor %}
+    {% else %}
+    <div class="row">
+        <p>Please log in</p>
+    </div>
+    {% endif %}
 </div>
-{% else %}
-<div class="row">
-    <p>Please log in</p>
-</div>
-{% endif %}
-
 {% endblock %}
