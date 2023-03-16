@@ -319,6 +319,8 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 
 ## Testing
 
+Link to the [TESTING.md](TESTING.md) file.
+
 ## Deployment
 
 The live deployed application can be found deployed on [Heroku](https://c25kapp.herokuapp.com).
