@@ -2,15 +2,10 @@
 
 {% block content %}
 {% for details in profile %}
+<h2>User Profile for {{ details.user.first_name }} {{ details.user.last_name }}</h2>
 <div class="row">
     <div class="col-12">
         <table class="table">
-            <thead>
-                <th>
-                    <h2>User Profile for {{ details.user.first_name }} {{ details.user.last_name }}</h2>
-                </th>
-                <td></td>
-            </thead>
             <tbody>
                 <tr>
                     <th>First Name:</th>
@@ -42,15 +37,14 @@
 </div>
 <div class="row">
     <div class="col-12">
-        <a href="{% url 'profile_update' details.id %}"><button type="button" class="btn btn-secondary">Update Details</button></a>
-        <a href="{% url 'profile_delete' details.id %}"><button type="button" class="btn btn-danger">Delete Profile</button></a>
+        <a href="{% url 'profile_update' details.id %}" class="btn btn-secondary">Update Details</a>
+        <a href="{% url 'profile_delete' details.id %}" class="btn btn-danger">Delete Profile</a>
     </div>
 </div>
 {% empty %}
 <div class="row">
     <div class="col-12">
-        <a href="{% url 'profile_create' %}"><button type="button" class="btn btn-secondary">Create Your
-                Profile</button></a>
+        <a href="{% url 'profile_create' %}" class="btn btn-secondary">Create Your Profile</a>
     </div>
 </div>
 {% endfor %}
