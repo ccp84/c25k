@@ -11,9 +11,17 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | Page | W3C URL | Screenshot | Notes |
 | --- | --- | --- | --- |
 | Home | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fc25kapp.herokuapp.com%2F) | ![screenshot](documentation/testing/html_validation_home.png) | None |
-| Run list | No link due to authenticated page | ![screenshot](documentation/testing/html_validation_run_list.png) | None |
-| Profile | No link due to authenticated page | ![screenshot](documentation/testing/html_validation_profile.png) | None |
-| x | x | x | x|
+| Run list | None, authentication needed | ![screenshot](documentation/testing/html_validation_run_list.png) | None |
+| Run Create | None, authentication needed | ![screenshot](documentation/testing/html_validation_run_create.png) | None |
+| Run Edit | None, authentication needed | ![screenshot](documentation/testing/html_validation_run_edit.png) | None |
+| Run Delete | None, authentication needed | ![screenshot](documentation/testing/html_validation_run_delete.png) | None |
+| Profile | None, authentication needed | ![screenshot](documentation/testing/html_validation_profile.png) | None |
+| Profile Create | None, authentication needed | ![screenshot](documentation/testing/html_validation_profile_create.png) | None |
+| Profile Update | None, authentication needed | ![screenshot](documentation/testing/html_validation_profile_update.png) | None |
+| Profile Delete | None, authentication needed | ![screenshot](documentation/testing/html_validation_profile_delete.png) | None |
+| Sign Up | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fc25kapp.herokuapp.com%2Faccounts%2Fsignup%2F) | ![screenshot](documentation/testing/html_validation_sign_up.png) | None |
+| Sign In | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fc25kapp.herokuapp.com%2Faccounts%2Flogin%2F) | ![screenshot](documentation/testing/html_validation_sign_in.png) | None |
+| Sign Out | None, authentication needed | ![screenshot](documentation/testing/html_validation_sign_out.png) | None |
 
 ### CSS
 
