@@ -8,8 +8,8 @@
     <div>
         <h3>Run : {{ run.title }}</h3>
         {% csrf_token %} {{ form.as_p }}
-        <input type="submit" class="btn btn-warning" value="Yes" />
-        <a href="{% url 'run_list' %}"><button type="button" class="btn btn-success">Return to Safety</button></a>
+        <input type="submit" class="btn btn-warning" value="Yes">
+        <a href="{% url 'run_list' %}" class="btn btn-success">Return to Safety</a>
     </div>
 </form>
 </div>
