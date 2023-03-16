@@ -8,7 +8,7 @@
     </div>
     <div class="col-sm-6">
         {% if request.user.groups.all.0.name == 'leader' %}
-        <button type="button" class="btn btn-secondary"><a href="{% url 'run_create' %}">Add a run</a></button>
+        <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
         {% endif %}
     </div>
 </div>
@@ -63,8 +63,8 @@
                 <tr>
                     {% if request.user.groups.all.0.name == 'leader' %}
                     <th>Leader Options</th>
-                    <td><button type="button" class="btn btn-warning"><a href="{% url 'run_update' run.id %}">Edit</a></button>
-                        <button type="button" class="btn btn-danger"><a href="{% url 'run_delete' run.id %}">Delete</a></button>
+                    <td><a href="{% url 'run_update' run.id %}" class="btn btn-warning">Edit</a>
+                        <a href="{% url 'run_delete' run.id %}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 <tr>
