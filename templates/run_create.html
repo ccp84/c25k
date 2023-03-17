@@ -1,19 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if request.user.groups.all.0.name == 'leader' %}
-<h2>Add a run</h2>
-<form method="post">
-    <div>
-        {% csrf_token %}
-        <table class="table">
-             {{ form.as_table }}
-        </table>
-        <input type="submit" value="Submit">
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            {% if request.user.groups.all.0.name == 'leader' %}
+            <div class="card">
+                <div class="card-header">
+                    <h2>Add a run</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        <div>
+                            {% csrf_token %}
+
+                            {{ form.as_p }}
+                            <input type="submit" value="Submit" class="btn btn-secondary">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-</form>
+</div>
 {% else %}
-<p>You must be a leader to access this form</p>
-<a href="{% url 'run_list' %}">Return to run list</a>
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <p>You must be a leader to access this form</p>
+            <a href="{% url 'run_list' %}">Return to run list</a>
+        </div>
+    </div>
+</div>
+
 {% endif %}
 {% endblock %}

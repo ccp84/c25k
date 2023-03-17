@@ -48,12 +48,14 @@
             </table>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            {% if not user.is_authenticated %}
-            <p>Please log in to access the run details page.</p>
-            {% endif %}
+</div>
+    {% if not user.is_authenticated %}
+    <div class="container">
+        <div class="row py-2 px-2">
+            <div class="col-12">
+                <p>Please log in to access the run details page.</p>
+            </div>
         </div>
     </div>
-</div>
+    {% endif %}
 {% endblock %}
