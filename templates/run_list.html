@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row py-2">
             <div class="col-sm-6">
-                <h1>Current Runs</h1>
+                <h1 class="text-success">Current Runs</h1>
             </div>
             <div class="col-sm-6">
                 {% if request.user.groups.all.0.name == 'leader' %}
-                <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
+                <a href="{% url 'run_create' %}" class="btn btn-success">Add a run</a>
                 {% endif %}
             </div>
         </div>
@@ -20,12 +20,12 @@
     <div class="row">
         {% for run in run_list %}
         <div class="col-sm-6 col-lg-4 my-2">
-            <div class="card">
+            <div class="card border-success mb-3">
                 <div class="card-header">
                     {{ run.title }}
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Date: {{ run.date }} | Time: {{ run.time }}</h5>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-success">Date: {{ run.date }} | Time: {{ run.time }}</h5>
                     <p class="card-text">Location: {{ run.location }}</p>
                     <p class="card-text">Leader: {{ run.leader.first_name }}</p>
                     <p class="card-text">Details: {{ run.details }}</p>
@@ -33,11 +33,11 @@
                         <form action="{% url 'run_join' run.id %}" method="POST">
                             {% csrf_token %}
                             {% if user.id in run.signed_up %}
-                            <button type="submit" class="btn bg-success" name="run_id" value="{{run.id}}">
+                            <button type="submit" class="btn-success" name="run_id" value="{{run.id}}">
                                 <i class="fas fa-running">In</i>
                             </button>
                             {% else %}
-                            <button type="submit" class="btn bg-danger" name="run_id" value="{{run.id}}">
+                            <button type="submit" class="btn-danger" name="run_id" value="{{run.id}}">
                                 <i class="fas fa-running">Out</i>
                             </button>
                             {% endif %}

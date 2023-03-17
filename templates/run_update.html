@@ -5,11 +5,11 @@
     <div class="row py-2">
         <div class="col-12">
             {% if request.user.groups.all.0.name == 'leader' %}
-            <div class="card">
+            <div class="card border-success mb-3">
                 <div class="card-header">
-                    <h2>Edit Run</h2>
+                    <h2 class="text-success">Edit Run</h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-dark">
                     <form method="post">
                         <div>
                             {% csrf_token %}

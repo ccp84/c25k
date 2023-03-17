@@ -5,17 +5,17 @@
     <div class="row py-2">
         <div class="col-12">
             {% if request.user.groups.all.0.name == 'leader' %}
-            <div class="card">
-                <div class="card-header">
+            <div class="card border-secondary mb-3">
+                <div class="card-header text-success">
                     <h2>Add a run</h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body text-dark">
                     <form method="post">
                         <div>
                             {% csrf_token %}
 
                             {{ form.as_p }}
-                            <input type="submit" value="Submit" class="btn btn-secondary">
+                            <input type="submit" value="Submit" class="btn btn-success">
                         </div>
                     </form>
                 </div>
