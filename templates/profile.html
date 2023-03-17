@@ -25,6 +25,14 @@
                                 <th>Medical:</th>
                                 <td>{{ details.medical }}</td>
                             </tr>
+                            <tr>
+                                <th>Account Type:</th>
+                                {% if details.user_type == 0 %}
+                                    <td> Runner </td>
+                                {% else %}
+                                    <td> Leader </td>
+                                {% endif %}
+                            </tr>
                         </tbody>
                     </table>
                 </div>
