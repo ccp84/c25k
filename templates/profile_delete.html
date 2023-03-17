@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="jumbotron">
-<h2>WARNING</h2>
-<p>Do you really want to delete profile data?</p>
-<form method="post">
-    <div>
-        {% csrf_token %} {{ form.as_p }}
-        <input type="submit" class="btn btn-warning" value="Yes">
-        <a href="{% url 'profile' %}" class="btn btn-success">Return to Safety</a>
+<div class="container">
+    <div class="row py-3">
+        <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+            <div class="alert alert-warning" role="alert">
+                <h2>WARNING</h2>
+                <p>Do you really want to delete profile data?</p>
+                <form method="post">
+                    <div>
+                        {% csrf_token %} {{ form.as_p }}
+                        <input type="submit" class="btn btn-warning" value="Yes">
+                        <a href="{% url 'profile' %}" class="btn btn-success">Return to Safety</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
 </div>
 {% endblock %}
