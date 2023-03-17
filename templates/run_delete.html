@@ -2,19 +2,33 @@
 
 {% block content %}
 {% if request.user.groups.all.0.name == 'leader' %}
-<div class="jumbotron">
-    <h2>WARNING: Do you really want to delete?</h2>
-<form method="post">
-    <div>
-        <h3>Run : {{ run.title }}</h3>
-        {% csrf_token %} {{ form.as_p }}
-        <input type="submit" class="btn btn-warning" value="Yes">
-        <a href="{% url 'run_list' %}" class="btn btn-success">Return to Safety</a>
+<div class="container">
+    <div class="row py-3">
+        <div class="col-12">
+            
+            <div class="alert alert-warning" role="alert">
+                <h2>WARNING: Do you really want to delete?</h2>
+                <form method="post">
+                    <div>
+                        <h3>Run : {{ run.title }}</h3>
+                        {% csrf_token %} {{ form.as_p }}
+                        <input type="submit" class="btn btn-warning" value="Yes">
+                        <a href="{% url 'run_list' %}" class="btn btn-success">Return to Safety</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</form>
+    
 </div>
 {% else %}
-<p>You must be a leader to access this form</p>
-<a href="{% url 'run_list' %}">Return to run list</a>
-{% endif %}
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <p>You must be a leader to access this form</p>
+            <a href="{% url 'run_list' %}">Return to run list</a>
+        </div>
+    </div>
+</div>
+    {% endif %}
 {% endblock %}

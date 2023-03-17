@@ -64,10 +64,17 @@
         <p>No current runs</p>
         {% endfor %}
     </div>
-    {% else %}
-    <div class="row">
-        <p>Please log in</p>
-    </div>
-    {% endif %}
 </div>
+{% else %}
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <p>Please log in</p>
+        </div>
+
+    </div>
+</div>
+
+{% endif %}
+
 {% endblock %}
