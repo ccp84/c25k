@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row py-2">
         <div class="col-12">
             <h1>Welcome to c25k {{ user.first_name }}</h1>
             <p>This is a 9 week course to get you from complete beginner to running 30 minutes comfortably.
@@ -11,7 +11,7 @@
                 plan to join them.</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row py-2">
         <div class="col-12">
             <h2>Upcoming Runs</h2>
             <table class="table table-striped">
@@ -33,9 +33,9 @@
                         {% if user.is_authenticated %}
                         <td>
                             {% if user.id in run.signed_up %}
-                            <i class="fas fa-running bg-success"></i>
+                            <i class="fas fa-running green-theme"></i>
                             {% else %}
-                            <i class="fas fa-running bg-danger"></i>
+                            <i class="fas fa-running red-theme"></i>
                             {% endif %}
                         </td>
                         {% endif %}

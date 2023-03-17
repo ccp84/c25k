@@ -2,21 +2,25 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h1>Current Runs</h1>
-        </div>
-        <div class="col-sm-6">
-            {% if request.user.groups.all.0.name == 'leader' %}
-            <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
-            {% endif %}
+<div>
+    <div class="container">
+        <div class="row py-2">
+            <div class="col-sm-6">
+                <h1>Current Runs</h1>
+            </div>
+            <div class="col-sm-6">
+                {% if request.user.groups.all.0.name == 'leader' %}
+                <a href="{% url 'run_create' %}" class="btn btn-secondary">Add a run</a>
+                {% endif %}
+            </div>
         </div>
     </div>
+</div>
+<div class="container">
     <div class="row">
         {% for run in run_list %}
-        <div class="col-sm-6 col-lg-4">
-            <div class="card text-center">
+        <div class="col-sm-6 col-lg-4 my-2">
+            <div class="card">
                 <div class="card-header">
                     {{ run.title }}
                 </div>
@@ -25,15 +29,15 @@
                     <p class="card-text">Location: {{ run.location }}</p>
                     <p class="card-text">Leader: {{ run.leader.first_name }}</p>
                     <p class="card-text">Details: {{ run.details }}</p>
-                    <div class="card-text">Count me in!
+                    <div class="card-text">Signed Up?
                         <form action="{% url 'run_join' run.id %}" method="POST">
                             {% csrf_token %}
                             {% if user.id in run.signed_up %}
                             <button type="submit" class="btn bg-success" name="run_id" value="{{run.id}}">
-                                <i class="fas fa-running"></i>
+                                <i class="fas fa-running">In</i>
                             </button>
                             {% else %}
-                            <button type="submit" class="btn bg-danger shadow-sm" name="run_id" value="{{run.id}}">
+                            <button type="submit" class="btn bg-danger" name="run_id" value="{{run.id}}">
                                 <i class="fas fa-running">Out</i>
                             </button>
                             {% endif %}
@@ -42,8 +46,7 @@
                 </div>
                 {% if request.user.groups.all.0.name == 'leader' %}
                 <div class="card-footer text-muted">
-                    <h5>Leader Options</h5>
-                    Signed up: {{ run.num_of_runners }}
+                    <h5>Signed up: {{ run.num_of_runners }} </h5>
                     <ul>
                         {% for runner in run.take_register %}
                         <li>{{ runner.0 }} {{ runner.1 }}</li>
