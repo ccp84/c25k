@@ -7,7 +7,7 @@ from .models import Run, Profile, User
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import ProfileForm, RunForm
+from .forms import ProfileForm, RunForm, ProfileUpdateForm
 
 
 def home(request):
@@ -85,7 +85,7 @@ class ProfileView(LoginRequiredMixin, View):
 class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Profile
     template_name = 'profile_update.html'
-    fields = ['DOB', 'ICE', 'medical']
+    form_class = ProfileUpdateForm
     success_url = '/profile'
     success_message = 'Profile Updated'
 
@@ -103,3 +103,17 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         query_set = Profile.objects.filter(user=self.request.user)
         return query_set
+
+
+class RunnerProfile(View):
+
+    def get(self, request, id):
+        runner = Profile.objects.filter(user__id=id)
+        # is_leader = False
+        # if runner.user.groups.filter(name="leader").exists():
+        #     is_leader = True
+        context = {
+            "runner": runner
+        }
+
+        return render(request, 'runner_profile.html', context)

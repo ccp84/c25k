@@ -49,7 +49,7 @@
                     <h5>Signed up: {{ run.num_of_runners }} </h5>
                     <ul>
                         {% for runner in run.take_register %}
-                        <li>{{ runner.0 }} {{ runner.1 }}</li>
+                        <a href="{% url 'runner_profile' runner.2 %}"><li>{{ runner.0 }} {{ runner.1 }}</li></a>
                         {% endfor %}
                     </ul>
                     <div>

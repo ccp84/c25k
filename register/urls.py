@@ -15,4 +15,5 @@ urlpatterns = [
          views.ProfileUpdate.as_view(), name='profile_update'),
     path("profile/delete/<pk>",
          views.ProfileDelete.as_view(), name='profile_delete'),
+    path("runner/<id>", views.RunnerProfile.as_view(), name='runner_profile'),
 ]

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container">
-    {% for details in profile %}
+    {% for details in runner %}
     <div class="row py-2">
         <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
             <div class="card border-success mb-3">
@@ -25,20 +25,20 @@
                                 <th>Medical:</th>
                                 <td>{{ details.medical }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th>Account Type:</th>
-                                {% if details.user.groups.all.0.name == 'leader' %}
+                                {% if details.is_leader %}
                                     <td> Leader </td>
                                 {% else %}
                                     <td> Runner </td>
                                 {% endif %}
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'profile_update' details.id %}" class="btn btn-success">Update Details</a>
-                    <a href="{% url 'profile_delete' details.id %}" class="btn btn-danger">Delete Profile</a>
+                    <!-- <a href="{% url 'profile_update' details.id %}" class="btn btn-warning">Update Details</a> -->
+                    <a href="{% url 'run_list' %}" class="btn btn-success">Back to Run List</a>
                 </div>
             </div>
         </div>
@@ -46,7 +46,9 @@
     {% empty %}
     <div class="row py-3">
         <div class="col-12">
-            <a href="{% url 'profile_create' %}" class="btn btn-success">Create Your Profile</a>
+            <h2 class="text-success">This runner has no profile yet</h2>
+            <a href="{% url 'run_list' %}" class="btn btn-success">Back to Run List</a>
+            <!-- <a href="{% url 'profile_create' %}" class="btn btn-warning">Make this a leader account</a> -->
         </div>
     </div>
     {% endfor %}
