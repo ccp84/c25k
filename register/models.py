@@ -25,9 +25,18 @@ class Run(models.Model):
         return self.title + str(self.date)
 
     def num_of_runners(self):
+        """
+        Function to return the number
+        of runners signed up to a run
+        """
         return self.runners.count()
 
     def signed_up(self):
+        """
+        Function to check if a runner's id
+        is in the list of runners signed up for
+        a run.
+        """
         name_list = []
         runner_list = self.runners.all()
         for runner in runner_list:
@@ -35,10 +44,14 @@ class Run(models.Model):
         return name_list
 
     def take_register(self):
+        """
+        Function to return the list of names of
+        runners who have signed up for a run.
+        """
         register = []
         runner_list = self.runners.all()
         for runner in runner_list:
-            register.append([runner.first_name, runner.last_name])
+            register.append([runner.first_name, runner.last_name, runner.id])
         return register
 
 
@@ -53,16 +66,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.first_name
-
-    def toggle_status(self):
-        if self.user_type == 0:
-            self.user_type = 1
-            return f"{self.user.first_name} is now set as a run leader"
-        elif self.user_type == 1:
-            self.user_type = 0
-            return f"{self.user.first_name} is now set as a runner"
-        else:
-            return "Invalid user type set"
-
-    def toggle_completed(self):
-        pass

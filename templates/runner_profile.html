@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if request.user.groups.all.0.name == 'leader' %}
 <div class="container">
     {% for details in runner %}
     <div class="row py-2">
@@ -25,14 +26,14 @@
                                 <th>Medical:</th>
                                 <td>{{ details.medical }}</td>
                             </tr>
-                            <!-- <tr>
+                            <tr>
                                 <th>Account Type:</th>
-                                {% if details.is_leader %}
-                                    <td> Leader </td>
-                                {% else %}
-                                    <td> Runner </td>
-                                {% endif %}
-                            </tr> -->
+                                    {% if is_leader %}
+                                        <td> Leader </td>
+                                    {% else %}
+                                        <td> Runner </td>
+                                    {% endif %}
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -53,4 +54,15 @@
     </div>
     {% endfor %}
 </div>
+{% else %}
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <p>You must be a leader to access this page</p>
+            <a href="{% url 'run_list' %}">Return to run list</a>
+        </div>
+    </div>
+</div>
+
+{% endif %}
 {% endblock %}

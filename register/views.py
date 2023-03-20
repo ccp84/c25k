@@ -109,11 +109,11 @@ class RunnerProfile(View):
 
     def get(self, request, id):
         runner = Profile.objects.filter(user__id=id)
-        # is_leader = False
-        # if runner.user.groups.filter(name="leader").exists():
-        #     is_leader = True
+        is_leader = User.objects.filter(
+            groups__name='leader', id=id)
         context = {
-            "runner": runner
+            "runner": runner,
+            "is_leader": is_leader,
         }
 
         return render(request, 'runner_profile.html', context)
