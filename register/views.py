@@ -106,7 +106,7 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return query_set
 
 
-class RunnerProfile(View):
+class RunnerProfile(LoginRequiredMixin, View):
 
     def get(self, request, id):
         runner = Profile.objects.filter(user__id=id)
@@ -120,7 +120,7 @@ class RunnerProfile(View):
         return render(request, 'runner_profile.html', context)
 
 
-class UserList(ListView):
+class UserList(LoginRequiredMixin, ListView):
 
     def get(self, request):
         user_list = User.objects.all().order_by('last_name')

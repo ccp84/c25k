@@ -326,10 +326,10 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 ### Allowing users to add ICE details to their profile
 This user story was not really necessary upon reflection and was covered in the 'Updating a user profile' step. So was automatically moved to completed.
 
-### Viewing runner details from the registraion page
+### Viewing runner details from the run list page
 This is achieved by developing a similar view to the User Profile view with a few minor alterations to allow an authorised leader to view details that do not belong to them. 
 ```python
-class RunnerProfile(View):
+class RunnerProfile(LoginRequiredMixin, View):
 
     def get(self, request, id):
         runner = Profile.objects.filter(user__id=id)
@@ -345,6 +345,69 @@ class RunnerProfile(View):
 The view uses an id passed in from the runner details that are clicked on from the register to query the Profile table and return the record associated with that id, rather than the currently logged in used which would be the leader. This displays the relevant runners profile, if they have set one up and allows the leader to see their ICE and medical information if they have chosen to provide it. 
 
 ![runner_profile](documentation/runner_profile.png)
+
+### Allow leaders to update user account types
+Leader account types have been implemented using a leader group in Postgres. In order to avoid new leader accounts having to be made via the admin panel a leader tools page was created that gives an overview of all user accounts registered to the system. 
+```python
+class UserList(LoginRequiredMixin, ListView):
+
+    def get(self, request):
+        user_list = User.objects.all().order_by('last_name')
+        is_leader = User.objects.filter(
+            groups__name='leader')
+        leader_ids = []
+        for leader in is_leader:
+            leader_ids.append(leader.id)
+        context = {
+            "user_list": user_list,
+            "is_leader": is_leader,
+            "leader_ids": leader_ids
+        }
+        return render(request, 'user_list.html', context)
+```
+The generic ListView returns all objects from the User model, as well as some extra filtering being done to determine wether each user is a member of the 'leader' group to allow the page to provide functionality for toggling account types. It is also used to highlight in the list which are the already designated leaders for easier viewing. 
+
+![user_list](documentation/user_list.png)
+
+All authorised leaders have access to be able to add any user account to the leaders group, access to this page is granted through authentication checking both on the nav bar:
+```html
+{% if request.user.groups.all.0.name == 'leader' %}
+<li class="nav-item">
+	<a class="nav-link" href="{% url 'user_list' %}">Leader Tools</a>
+</li>
+{% endif %}
+```
+And via the same if statement checking before displaying any page content. 
+
+For safety though, leader accounts can only add users to this group they cannot remove other users access rights. 
+```python
+def make_leader(request, id):
+
+    runner = get_object_or_404(User, id=id)
+    leaders_group = Group.objects.get(name='leader')
+    runner.groups.add(leaders_group)
+    messages.add_message(
+        request,
+        messages.INFO,
+        f"{runner.first_name} was added to the leaders group.")
+
+    return HttpResponseRedirect(reverse('user_list'))
+```
+
+This function takes in the id of the user that was clicked on from the url and uses it to filter the User table. The returned User object then has the group 'leader' added to its list of groups. The filtering to fetch groups was researched using [this thread](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) on stack overflow. 
+
+![make_leader](documentation/make_leader.png)
+
+Logged in superuser accounts have the ability to remove users from the leaders group. The function to do this is identical to adding with the change of 1 line from `runner.groups.add(leaders_group)` to `runner.groups.remove(leaders_group)`. The authentication checking for this ability is done in the django template. 
+```html
+{% if request.user.is_superuser %}
+<li class="btn btn-danger">
+    <a href="{% url 'remove_leader' user.id %}" class="text-white">Remove Leader</a>
+</li>
+{% endif %}
+```
+
+![remove_leader](documentation/remove_leader.png)
 
 ## REVIEW POINT 4
 |At the final review point of the project. Both documentation points remain to be finished and I have moved the last feature to won't have. | ![review_point_4](documentation/project_review_4.png) |
