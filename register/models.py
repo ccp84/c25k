@@ -61,7 +61,6 @@ class Profile(models.Model):
     DOB = models.DateField(blank=True, null=True)
     ICE = models.CharField(max_length=20, blank=True)
     medical = models.TextField(blank=True)
-    user_type = models.IntegerField(choices=USER_TYPE, default=0, blank=True)
     completed = models.BooleanField(default=False, blank=True)
 
     def __str__(self):
