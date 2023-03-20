@@ -7,6 +7,7 @@ from .models import Run, Profile, User
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import Group
 from .forms import ProfileForm, RunForm, ProfileUpdateForm
 
 
@@ -121,7 +122,33 @@ class RunnerProfile(View):
 
 class UserList(ListView):
 
-    model = User
-    template_name = 'user_list.html'
+    def get(self, request):
+        user_list = User.objects.all().order_by('last_name')
+        is_leader = User.objects.filter(
+            groups__name='leader')
+        leader_ids = []
+        for leader in is_leader:
+            leader_ids.append(leader.id)
+        context = {
+            "user_list": user_list,
+            "is_leader": is_leader,
+            "leader_ids": leader_ids
+        }
+        return render(request, 'user_list.html', context)
 
-    ordering = ['last_name']
+
+def make_leader(request, id):
+
+    runner = get_object_or_404(User, id=id)
+    """
+    This code is based on the thread found on stack overflow here:
+    https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django
+    """
+    leaders_group = Group.objects.get(name='leader')
+    runner.groups.add(leaders_group)
+    messages.add_message(
+        request,
+        messages.INFO,
+        f"{runner.first_name} was added to the leaders group.")
+
+    return HttpResponseRedirect(reverse('user_list'))

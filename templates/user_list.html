@@ -5,27 +5,37 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
-            <div class="card border-success mb-3">
-                <div class="card-header">
-                    <h1 class="text-success">Current Users</h1>
-                </div>
-                <div class="card-body text-dark">
-                    <table class="table">
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        {% for user in user_list %}
-                        <tr>
-                            <td>{{ user.first_name }}</td>
-                            <td>{{ user.last_name }}</td>
-                            <td>{{ user.username }}</td>
-                        </tr>
-                        {% empty %}
-                            <p>No current users</p>
-                        {% endfor %}
-                    </table>
+            <div class="accordion" id="users_accordion">
+                <div class="card border-success mb-3">
+                    <div class="card-header">
+                        <h1 class="text-success">Current Users</h1>
+                    </div>
+                    {% for user in user_list %}
+                    <div class="card">
+                        <div class="card-header" id="runner{{user.id}}">
+                          <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false" aria-controls="collapse{{ user.id }}">
+                              {{ user.first_name }} {{ user.last_name }}
+                            </button>
+                          </h2>
+                        </div>
+                    
+                        <div id="collapse{{ user.id }}" class="collapse" aria-labelledby="runner{{ user.id }}" data-parent="#users_accordion">
+                          <div class="card-body">
+                            <ul>
+                                <li>Username: {{ user.username }}</li>
+                                <li>email: {{ user.email }}</li>
+                                {% if user.id in leader_ids %}
+                                <li>Account Type: Leader</li>
+                                {% else %}
+                                <li>Account Type: Runner</li>
+                                <li class="btn btn-warning"><a href="{% url 'make_leader' user.id %}" class="text-dark">Make Leader</a></li>
+                                {% endif %}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

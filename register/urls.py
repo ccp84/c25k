@@ -17,4 +17,5 @@ urlpatterns = [
          views.ProfileDelete.as_view(), name='profile_delete'),
     path("runner/<id>", views.RunnerProfile.as_view(), name='runner_profile'),
     path("user/list", views.UserList.as_view(), name='user_list'),
+    path("user/make_leader/<id>", views.make_leader, name='make_leader'),
 ]
