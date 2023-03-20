@@ -18,7 +18,7 @@ This django app will be a runner registration tool for c25k groups. Currently le
 * It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the adin panel. 
 * It could enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
 
-Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
+Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D). Any remaining features outside of this project's timeframe will be moved to 'won't have', and in production would become part of the next release or future features.
 
 ## Table of Contents:
 1. [Wireframes](#wireframes)
@@ -322,6 +322,32 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 | 2. Allowing leaders to view runners details |
 | 3. Allowing leaders to update user account types from the front end |
 | 4. Allowing leaders to graduate runners once they have completed the course |
+
+### Allowing users to add ICE details to their profile
+This user story was not really necessary upon reflection and was covered in the 'Updating a user profile' step. So was automatically moved to completed.
+
+### Viewing runner details from the registraion page
+This is achieved by developing a similar view to the User Profile view with a few minor alterations to allow an authorised leader to view details that do not belong to them. 
+```python
+class RunnerProfile(View):
+
+    def get(self, request, id):
+        runner = Profile.objects.filter(user__id=id)
+        is_leader = User.objects.filter(
+            groups__name='leader', id=id)
+        context = {
+            "runner": runner,
+            "is_leader": is_leader,
+        }
+
+        return render(request, 'runner_profile.html', context)
+```
+The view uses an id passed in from the runner details that are clicked on from the register to query the Profile table and return the record associated with that id, rather than the currently logged in used which would be the leader. This displays the relevant runners profile, if they have set one up and allows the leader to see their ICE and medical information if they have chosen to provide it. 
+
+![runner_profile](documentation/runner_profile.png)
+
+## REVIEW POINT 4
+|At the final review point of the project. Both documentation points remain to be finished and I have moved the last feature to won't have. | ![review_point_4](documentation/project_review_4.png) |
 
 
 ## Future Features
