@@ -473,6 +473,7 @@ You can fork this repository by using the following steps:
 * paint.net - Used for image manipulation
 * [Codecademy django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - This course introduced me to the use of the generic CBV's for Create, Update and Delete.
 * [Code to filter by user group](https://stackoverflow.com/questions/73371568/how-to-check-user-group-in-django-template) - The code for filtering based on a users group was taken from this stack overflow article.
+* [Code to add used to a group](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) - The function to make runners into leaders was built using this stack overflow thread.
 * [Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
 * [Font Awesome](https://fontawesome.com/) - Icons used throughout the project.
 * [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the django documentation here.
