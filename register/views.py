@@ -152,3 +152,20 @@ def make_leader(request, id):
         f"{runner.first_name} was added to the leaders group.")
 
     return HttpResponseRedirect(reverse('user_list'))
+
+
+def remove_leader(request, id):
+
+    runner = get_object_or_404(User, id=id)
+    """
+    This code is based on the thread found on stack overflow here:
+    https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django
+    """
+    leaders_group = Group.objects.get(name='leader')
+    runner.groups.remove(leaders_group)
+    messages.add_message(
+        request,
+        messages.INFO,
+        f"{runner.first_name} was removed from the leaders group.")
+
+    return HttpResponseRedirect(reverse('user_list'))

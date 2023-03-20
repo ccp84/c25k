@@ -18,4 +18,5 @@ urlpatterns = [
     path("runner/<id>", views.RunnerProfile.as_view(), name='runner_profile'),
     path("user/list", views.UserList.as_view(), name='user_list'),
     path("user/make_leader/<id>", views.make_leader, name='make_leader'),
+    path("user/remove_leader/<id>", views.remove_leader, name='remove_leader'),
 ]

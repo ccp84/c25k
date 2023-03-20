@@ -12,9 +12,13 @@
                     </div>
                     {% for user in user_list %}
                     <div class="card">
+                        {% if user.id in leader_ids %}
+                        <div class="card-header bg-warning" id="runner{{user.id}}">
+                        {% else %}
                         <div class="card-header" id="runner{{user.id}}">
+                        {% endif %}
                           <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false" aria-controls="collapse{{ user.id }}">
+                            <button class="btn btn-link btn-block text-left collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false" aria-controls="collapse{{ user.id }}">
                               {{ user.first_name }} {{ user.last_name }}
                             </button>
                           </h2>
@@ -27,6 +31,9 @@
                                 <li>email: {{ user.email }}</li>
                                 {% if user.id in leader_ids %}
                                 <li>Account Type: Leader</li>
+                                    {% if request.user.is_superuser %}
+                                    <li class="btn btn-danger"><a href="{% url 'remove_leader' user.id %}" class="text-white">Remove Leader</a></li>
+                                    {% endif %}
                                 {% else %}
                                 <li>Account Type: Runner</li>
                                 <li class="btn btn-warning"><a href="{% url 'make_leader' user.id %}" class="text-dark">Make Leader</a></li>
