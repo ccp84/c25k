@@ -18,7 +18,7 @@ This django app will be a runner registration tool for c25k groups. Currently le
 * It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the adin panel. 
 * It could enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
 
-These functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
+Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D)
 
 ## Table of Contents:
 1. [Wireframes](#wireframes)
@@ -314,6 +314,15 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
         return query_set
 ```
 ![profile delete](documentation/profile_delete.png)
+
+## REVIEW POINT 3
+|Now that all of the critical user functionality is working, all that remains to work through are the could have points on the project board. I have prioritised these as follows. :| ![review_point_3](documentation/project_review_3.png) |
+| -------------------------------------------- | ------------------------------------- |
+| 1. Allowing users to add their ICE details to their profile |
+| 2. Allowing leaders to view runners details |
+| 3. Allowing leaders to update user account types from the front end |
+| 4. Allowing leaders to graduate runners once they have completed the course |
+
 
 ## Future Features
 

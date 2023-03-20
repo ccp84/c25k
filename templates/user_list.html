@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.groups.all.0.name == 'leader' %}
+<div class="container">
+    <div class="row py-2">
+        <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+            <div class="card border-success mb-3">
+                <div class="card-header">
+                    <h1 class="text-success">Current Users</h1>
+                </div>
+                <div class="card-body text-dark">
+                    <table class="table">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        {% for user in user_list %}
+                        <tr>
+                            <td>{{ user.first_name }}</td>
+                            <td>{{ user.last_name }}</td>
+                            <td>{{ user.username }}</td>
+                        </tr>
+                        {% empty %}
+                            <p>No current users</p>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container">
+    <div class="row py-2">
+        <div class="col-12">
+            <p>You must be a leader to access this form</p>
+            <a href="{% url 'run_list' %}">Return to run list</a>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

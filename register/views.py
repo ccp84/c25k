@@ -117,3 +117,11 @@ class RunnerProfile(View):
         }
 
         return render(request, 'runner_profile.html', context)
+
+
+class UserList(ListView):
+
+    model = User
+    template_name = 'user_list.html'
+
+    ordering = ['last_name']
