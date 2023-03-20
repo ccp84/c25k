@@ -38,7 +38,6 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    <!-- <a href="{% url 'profile_update' details.id %}" class="btn btn-warning">Update Details</a> -->
                     <a href="{% url 'run_list' %}" class="btn btn-success">Back to Run List</a>
                 </div>
             </div>
@@ -49,7 +48,6 @@
         <div class="col-12">
             <h2 class="text-success">This runner has no profile yet</h2>
             <a href="{% url 'run_list' %}" class="btn btn-success">Back to Run List</a>
-            <!-- <a href="{% url 'profile_create' %}" class="btn btn-warning">Make this a leader account</a> -->
         </div>
     </div>
     {% endfor %}
