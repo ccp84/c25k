@@ -12,7 +12,7 @@ This django app will be a runner registration tool for c25k groups. Currently le
 * It should allow logged in runners to sign up and state that they are planning on attending a run / remove their name from the list if they change their mind. 
 * It should allow leaders to view a list of runners who are planning to attend each session. 
 * It should allow registered users to view and edit their details. 
-* The overall site should be styled in Joggers green and yellow on completion and function with mobile first design in mind.
+* The overall site should have a main colour theme on completion and function with mobile first design in mind.
 * It could be used to mark runners as completed to maintain a list of graduates within the database, and list graduate runs following on from the main course. 
 * It could be used for runners to add an emergency contact to their account which run leaders will be able to access during sessions in case of incident during the run.  
 * It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the adin panel. 
