@@ -46,10 +46,10 @@
                 </div>
                 {% if request.user.groups.all.0.name == 'leader' %}
                 <div class="card-footer text-muted">
-                    <h5>Signed up: {{ run.num_of_runners }} </h5>
+                    <h5>Signed up: <span class="badge badge-secondary badge-pill">{{ run.num_of_runners }}</span> </h5>
                     <ul>
                         {% for runner in run.take_register %}
-                        <a href="{% url 'runner_profile' runner.2 %}"><li>{{ runner.0 }} {{ runner.1 }}</li></a>
+                        <li><a href="{% url 'runner_profile' runner.2 %}">{{ runner.0 }} {{ runner.1 }}</a></li>
                         {% endfor %}
                     </ul>
                     <div>
