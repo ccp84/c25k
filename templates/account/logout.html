@@ -9,7 +9,7 @@
   <div class="row py-2">
     <div class="col-sm-10 col-lg-8">
       <div class="card border-success mb-3">
-        <div class="card-header">
+        <div class="card-header bg-white">
           <h1 class="text-success">{% trans "Sign Out" %}</h1>
         </div>
         <div class="card-body">
@@ -20,7 +20,7 @@
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
-            <button type="submit" class="btn btn-success">{% trans 'Sign Out' %}</button>
+            <button type="submit" class="btn btn-warning">{% trans 'Sign Out' %}</button>
           </form>
         </div>
       </div>
