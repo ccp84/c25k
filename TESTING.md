@@ -116,34 +116,28 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 ## Lighthouse Audit
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Use this space to discuss testing the live/deployed site's Lighthouse Audit reports.
-Avoid testing the local version (especially if developing in Gitpod), as this can have knock-on effects of performance.
-
-If you don't have Lighthouse in your Developer Tools,
-it can be added as an [extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk).
-
-Don't just test the home page (unless it's a single-page application).
-Make sure to test the Lighthouse Audit results for all of your pages.
-
-**IMPORTANT**: You must provide screenshots of the results, to "prove" that you've actually tested them.
-
-Sample Lighthouse testing documentation:
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Home | Mobile | ![screenshot](documentation/lighthouse-home-mobile.png) | Some minor warnings |
-| Home | Desktop | ![screenshot](documentation/lighthouse-home-desktop.png) | Few warnings |
-| About | Mobile | ![screenshot](documentation/lighthouse-about-mobile.png) | Some minor warnings |
-| About | Desktop | ![screenshot](documentation/lighthouse-about-desktop.png) | Few warnings |
-| Gallery | Mobile | ![screenshot](documentation/lighthouse-gallery-mobile.png) | Slow response time due to large images |
-| Gallery | Desktop | ![screenshot](documentation/lighthouse-gallery-desktop.png) | Slow response time due to large images |
-| x | x | x | repeat for any other tested pages/sizes |
+| Home | Mobile | ![screenshot](documentation/testing/lighthouse_home_mobile.png) | Warning for bootstrap JS link |
+| Home | Desktop | ![screenshot](documentation/testing/lighthouse_home_desktop.png) | Warning for bootstrap CDN links |
+| Run List | Mobile | ![screenshot](documentation/testing/lighthouse_runlist_mobile.png) | Warning for out of order headings and poor contrast on green button |
+| Run List | Desktop | ![screenshot](documentation/testing/lighthouse_runlist_desktop.png) | Warning for non sequential headings, poor contrast on green button and bootstrap JS link |
+| Add / Edit Form | Mobile | ![screenshot](documentation/testing/lighthouse_add_mobile.png) | Warning for bootstrap CDN links,  |
+| All / Edit Form | Desktop | ![screenshot](documentation/testing/lighthouse_add_desktop.png) | Warning for JS link |
+| Delete | Mobile | ![screenshot](documentation/testing/lighthouse_delete_mobile.png) | Warning for bootstrap JS link |
+| Delete | Desktop | ![screenshot](documentation/testing/lighthouse_delete_desktop.png) | Warning for bootstrap JS link |
+| Profile | Mobile | ![screenshot](documentation/testing/lighthouse_profile_mobile.png) | Warning for bootstrap JS link |
+| Profile | Desktop | ![screenshot](documentation/testing/lighthouse_profile_desktop.png) | Warning for bootstrap JS link |
+| Leader Tools | Mobile | ![screenshot](documentation/testing/lighthouse_leadertools_mobile.png) | Warning for bootstrap JS link |
+| Leader Tools | Desktop | ![screenshot](documentation/testing/lighthouse_leadertools_desktop.png) | Warning for bootstrap JS link |
+| Sign Up | Mobile | ![screenshot](documentation/testing/lighthouse_signup_mobile.png) | Warning for bootstrap JS link |
+| Sign Up | Desktop | ![screenshot](documentation/testing/lighthouse_signup_desktop.png) | Warning for bootstrap JS link |
+| Sign In | Mobile | ![screenshot](documentation/testing/lighthouse_signin_mobile.png) | Warning for bootstrap JS link |
+| Sign In | Desktop | ![screenshot](documentation/testing/lighthouse_signin_desktop.png) | repeat for any other tested pages/sizes |
+| Sign Out | Mobile | ![screenshot](documentation/testing/lighthouse_signout_mobile.png) | Warning for bootstrap JS link |
+| Sign Out | Desktop | ![screenshot](documentation/testing/lighthouse_signout_desktop.png) | Warning for bootstrap JS link |
 
 ## Defensive Programming
 
