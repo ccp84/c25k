@@ -7,15 +7,15 @@
         <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
             <div class="accordion" id="users_accordion">
                 <div class="card border-success mb-3">
-                    <div class="card-header">
+                    <div class="card-header bg-white">
                         <h1 class="text-success">Current Users</h1>
                     </div>
                     {% for user in user_list %}
-                    <div class="card">
+                    <div class="card bg-white">
                         {% if user.id in leader_ids %}
                         <div class="card-header bg-warning" id="runner{{user.id}}">
                         {% else %}
-                        <div class="card-header" id="runner{{user.id}}">
+                        <div class="card-header bg-white" id="runner{{user.id}}">
                         {% endif %}
                           <h2 class="mb-0">
                             <button class="btn btn-link btn-block text-left collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false" aria-controls="collapse{{ user.id }}">
