@@ -65,7 +65,7 @@ Mobile (DevTools)
 | View | Screenshot | Notes |
 | --- | --- | --- |
 | Home | ![screenshot](documentation/testing/responsive_mobile_devtools_home.png) | Works as expected |
-| Run List ![screenshot](documentation/testing/responsive_mobile_devtools_runlist.png) | Works as expected |
+| Run List | ![screenshot](documentation/testing/responsive_mobile_devtools_runlist.png) | Works as expected |
 | Add/Edit Form | ![screenshot](documentation/testing/responsive_mobile_devtools_add.png) | Works as expected |
 | Delete | ![screenshot](documentation/testing/responsive_mobile_devtools_delete.png) | Works as expected |
 | Profile | ![screenshot](documentation/testing/responsive_mobile_devtools_profile.png) | Works as expected |
@@ -73,6 +73,20 @@ Mobile (DevTools)
 | Sign Up | ![screenshot](documentation/testing/responsive_mobile_devtools_signup.png) | Works as expected |
 | Sign In | ![screenshot](documentation/testing/responsive_mobile_devtools_signin.png) | Works as expected |
 | Sign Out | ![screenshot](documentation/testing/responsive_mobile_devtools_signout.png) | Works as expected |
+
+Tablet (DevTools)
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+| Home | ![screenshot](documentation/testing/responsive_tablet_devtools_home.png) | Works as expected |
+| Run List | ![screenshot](documentation/testing/responsive_tablet_devtools_runlist.png) | Works as expected |
+| Add/Edit Form | ![screenshot](documentation/testing/responsive_tablet_devtools_add.png) | Works as expected |
+| Delete | ![screenshot](documentation/testing/responsive_tablet_devtools_delete.png) | Works as expected |
+| Profile | ![screenshot](documentation/testing/responsive_tablet_devtools_profile.png) | Works as expected |
+| Leader Tools | ![screenshot](documentation/testing/responsive_tablet_devtools_leadertools.png) | Works as expected |
+| Sign Up | ![screenshot](documentation/testing/responsive_tablet_devtools_signup.png) | Works as expected |
+| Sign In | ![screenshot](documentation/testing/responsive_tablet_devtools_signin.png) | Works as expected |
+| Sign Out | ![screenshot](documentation/testing/responsive_tablet_devtools_signout.png) | Works as expected |
 
 ## Lighthouse Audit
 
