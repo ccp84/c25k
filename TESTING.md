@@ -88,6 +88,20 @@ Tablet (DevTools)
 | Sign In | ![screenshot](documentation/testing/responsive_tablet_devtools_signin.png) | Works as expected |
 | Sign Out | ![screenshot](documentation/testing/responsive_tablet_devtools_signout.png) | Works as expected |
 
+Desktop
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+| Home | ![screenshot](documentation/testing/responsive_desktop_home.png) | Works as expected |
+| Run List | ![screenshot](documentation/testing/responsive_desktop_runlist.png) | Works as expected |
+| Add/Edit Form | ![screenshot](documentation/testing/responsive_desktop_add.png) | Works as expected |
+| Delete | ![screenshot](documentation/testing/responsive_desktop_delete.png) | Works as expected |
+| Profile | ![screenshot](documentation/testing/responsive_desktop_profile.png) | Works as expected |
+| Leader Tools | ![screenshot](documentation/testing/responsive_desktop_leadertools.png) | Works as expected |
+| Sign Up | ![screenshot](documentation/testing/responsive_desktop_signup.png) | Works as expected |
+| Sign In | ![screenshot](documentation/testing/responsive_desktop_signin.png) | Works as expected |
+| Sign Out | ![screenshot](documentation/testing/responsive_desktop_signout.png) | Works as expected |
+
 ## Lighthouse Audit
 
 ⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
