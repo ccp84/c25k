@@ -6,7 +6,7 @@
         <div class="col-sm-8 col-lg-6">
             {% if request.user.groups.all.0.name == 'leader' %}
             <div class="card border-success mb-3">
-                <div class="card-header">
+                <div class="card-header bg-white">
                     <h2 class="text-success">Edit Run</h2>
                 </div>
                 <div class="card-body text-dark">
@@ -15,7 +15,7 @@
                             {% csrf_token %}
 
                             {{ form.as_p }}
-                            <input type="submit" value="Submit" class="btn btn-success">
+                            <input type="submit" value="Submit" class="btn btn-warning">
                         </div>
                     </form>
                 </div>
