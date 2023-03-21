@@ -60,7 +60,7 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 I've tested my deployed project on multiple devices to check for responsiveness issues.
 
-Mobile (DevTools)
+### Mobile (DevTools)
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ Mobile (DevTools)
 | Sign In | ![screenshot](documentation/testing/responsive_mobile_devtools_signin.png) | Works as expected |
 | Sign Out | ![screenshot](documentation/testing/responsive_mobile_devtools_signout.png) | Works as expected |
 
-Tablet (DevTools)
+### Tablet (DevTools)
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
@@ -88,7 +88,7 @@ Tablet (DevTools)
 | Sign In | ![screenshot](documentation/testing/responsive_tablet_devtools_signin.png) | Works as expected |
 | Sign Out | ![screenshot](documentation/testing/responsive_tablet_devtools_signout.png) | Works as expected |
 
-Desktop
+### Desktop
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
@@ -101,6 +101,18 @@ Desktop
 | Sign Up | ![screenshot](documentation/testing/responsive_desktop_signup.png) | Works as expected |
 | Sign In | ![screenshot](documentation/testing/responsive_desktop_signin.png) | Works as expected |
 | Sign Out | ![screenshot](documentation/testing/responsive_desktop_signout.png) | Works as expected |
+
+### Other views tested
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+| iPhone | ![screenshot](documentation/testing/browser_compatibility_safari.PNG) | Works as expected |
+| Samsung Galaxy (Devtools) | ![screenshot](documentation/testing/responsiveness_galaxy_s10.png) | Works as expected |
+| iPad mini (Devtools) | ![screenshot](documentation/testing/responsiveness_ipad_mini.png) | Works as expected |
+| iPad Pro (Devtools) | ![screenshot](documentation/testing/responsiveness_ipad_pro.png) | Works as expected |
+| Kindle Fire (Devtools) | ![screenshot](documentation/testing/responsiveness_kindle_fire.png) | Works as expected |
+| HiDPI Screen (Devtools) | ![screenshot](documentation/testing/responsiveness_laptop_HiDPI.png) | Works as expected |
+| Nokia 8110 (Devtools) | ![screenshot](documentation/testing/responsiveness_nokia_8110.png) | Interesting that it scales that far! |
 
 ## Lighthouse Audit
 
