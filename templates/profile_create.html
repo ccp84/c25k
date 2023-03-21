@@ -5,7 +5,7 @@
     <div class="row py-2">
         <div class="col-sm-8 col-lg-6">
             <div class="card border-success mb-3">
-                <div class="card-header text-success">
+                <div class="card-header text-success bg-white">
                     <h2>Create Profile</h2>
                 </div>
                 <div class="card-body text-dark">
@@ -14,7 +14,7 @@
                             {% csrf_token %}
 
                             {{ form.as_p }}
-                            <input type="submit" value="Submit" class="btn btn-success">
+                            <input type="submit" value="Submit" class="btn btn-warning">
                         </div>
                     </form>
                 </div>

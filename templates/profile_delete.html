@@ -10,8 +10,8 @@
                 <form method="post">
                     <div>
                         {% csrf_token %} {{ form.as_p }}
-                        <input type="submit" class="btn btn-warning" value="Yes">
-                        <a href="{% url 'profile' %}" class="btn btn-success">Return to Safety</a>
+                        <input type="submit" class="btn btn-secondary" value="Yes">
+                        <a href="{% url 'profile' %}" class="btn btn-warning">Return to Safety</a>
                     </div>
                 </form>
             </div>
