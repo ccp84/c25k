@@ -125,7 +125,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Run List | Mobile | ![screenshot](documentation/testing/lighthouse_runlist_mobile.png) | Warning for out of order headings and poor contrast on green button |
 | Run List | Desktop | ![screenshot](documentation/testing/lighthouse_runlist_desktop.png) | Warning for non sequential headings, poor contrast on green button and bootstrap JS link |
 | Add / Edit Form | Mobile | ![screenshot](documentation/testing/lighthouse_add_mobile.png) | Warning for bootstrap CDN links,  |
-| All / Edit Form | Desktop | ![screenshot](documentation/testing/lighthouse_add_desktop.png) | Warning for JS link |
+| Add / Edit Form | Desktop | ![screenshot](documentation/testing/lighthouse_add_desktop.png) | Warning for JS link |
 | Delete | Mobile | ![screenshot](documentation/testing/lighthouse_delete_mobile.png) | Warning for bootstrap JS link |
 | Delete | Desktop | ![screenshot](documentation/testing/lighthouse_delete_desktop.png) | Warning for bootstrap JS link |
 | Profile | Mobile | ![screenshot](documentation/testing/lighthouse_profile_mobile.png) | Warning for bootstrap JS link |
@@ -141,79 +141,54 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 ## Defensive Programming
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Defensive programming (defensive design) is extremely important!
-
-When building projects that accept user inputs or forms, you should always test the level of security for each.
-Examples of this could include (not limited to):
-
-Forms:
-- Users cannot submit an empty form
-- Users must enter valid email addresses
-
-PP3 (Python-only):
-- Users must enter a valid letter/word/string when prompted
-- Users must choose from a specific list only
-
-Flask/Django:
-- Users cannot brute-force a URL to navigate to a restricted page
-- Users cannot perform CRUD functionality while logged-out
-- User-A should not be able to manipulate data belonging to User-B, or vice versa
-- Non-Authenticated users should not be able to access pages that require authentication
-- Standard users should not be able to access pages intended for superusers
-
-You'll want to test all functionality on your application, whether it's a standard form,
-or uses CRUD functionality for data manipulation on a database.
-Make sure to include the `required` attribute on any form-fields that should be mandatory.
-Try to access various pages on your site as different user types (User-A, User-B, guest user, admin, superuser).
-
-You should include any manual tests performed, and the expected results/outcome.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 Defensive programming was manually tested with the below user acceptance testing:
 
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
 | Home Page | | | | |
-| | Click on Logo | Redirection to Home page | Pass | |
-| | Click on Home link in navbar | Redirection to Home page | Pass | |
-| Gallery Page | | | | |
-| | Click on Gallery link in navbar | Redirection to Gallery page | Pass | |
-| | Load gallery images | All images load as expected | Pass | |
-| Contact Page | | | | |
-| | Click on Contact link in navbar | Redirection to Contact page | Pass | |
+|1 | Click on Logo | Redirection to Home page | Pass | |
+|2 | Click on Home link in navbar | Redirection to Home page | Pass | |
+| Run List | | | | |
+|3 | Logged out user manually loads the page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive3.png) |
+|4 | Click on Run List link in nav bar | Base page loads for logged in users | Pass | |
+|5 | User with leader credetials clicks on link in nav bar | Extra register details only displayed to users with leader group credentials | Pass | |
+|6 | User with leader credentials follows profile link from register | Runner profile displayed | Pass | |
+|7 | User without leader credentials manually loads profile page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive7.png) |
+|8 | Logged out user manually loads profile page | Error as no request will be returned from the database | Pass | ![screenshot](documentation/testing/defensive8.png) |
+|9 | User with leader credentials clicks the add run button | Add run form displayed | Pass | |
+|10 | User without leader credentials manually loads add run page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive10.png) |
+|11 | Logged out user manually loads the add run page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive11.png) |
+|12 | User with leader credentials clicks the edit run button | Edit run form displayed | Pass | |
+|13 | User without leader credentials manually loads edit run page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive13.png) |
+|14 | Logged out user manually loads the edit run page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive14.png) |
+|15 | User with leader credentials clicks the delete run button | Run deletion confirmation warning displayed | Pass | |
+|16 | User without leader credentials manually loads delete run page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive16.png) |
+|17 | Logged out user manually loads the delete run page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive17.png) |
+| Profile Page | | | | |
+| | Click on  link in navbar | Only Loads for logged in users | Pass | |
 | | Enter first/last name | Field will accept freeform text | Pass | |
 | | Enter valid email address | Field will only accept email address format | Pass | |
 | | Enter message in textarea | Field will accept freeform text | Pass | |
 | | Click the Submit button | Redirects user to form-dump | Pass | User must click 'Back' button to return |
-| Sign Up | | | | |
+| Leader Tools | | | | |
 | | Click on Sign Up button | Redirection to Sign Up page | Pass | |
 | | Enter valid email address | Field will only accept email address format | Pass | |
 | | Enter valid password (twice) | Field will only accept password format | Pass | |
 | | Click on Sign Up button | Asks user to confirm email page | Pass | Email sent to user |
 | | Confirm email | Redirects user to blank Sign In page | Pass | |
-| Log In | | | | |
+| Sign In | | | | |
 | | Click on the Login link | Redirection to Login page | Pass | |
 | | Enter valid email address | Field will only accept email address format | Pass | |
 | | Enter valid password | Field will only accept password format | Pass | |
 | | Click Login button | Redirects user to home page | Pass | |
-| Log Out | | | | |
+| Sign Up | | | | |
 | | Click Logout button | Redirects user to logout page | Pass | Confirms logout first |
 | | Click Confirm Logout button | Redirects user to home page | Pass | |
-| Profile | | | | |
+| Log Out | | | | |
 | | Click on Profile button | User will be redirected to the Profile page | Pass | |
 | | Click on the Edit button | User will be redirected to the edit profile page | Pass | |
 | | Click on the My Orders link | User will be redirected to the My Orders page | Pass | |
 | | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
-
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Repeat for all other tests, as applicable to your own site.
-The aforementioned tests are just an example of a few different project scenarios.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
 
 ## User Story Testing
 
