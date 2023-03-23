@@ -165,11 +165,16 @@ Defensive programming was manually tested with the below user acceptance testing
 |16 | User without leader credentials manually loads delete run page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive16.png) |
 |17 | Logged out user manually loads the delete run page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive17.png) |
 | Profile Page | | | | |
-| | Click on  link in navbar | Only Loads for logged in users | Pass | |
-| | Enter first/last name | Field will accept freeform text | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter message in textarea | Field will accept freeform text | Pass | |
-| | Click the Submit button | Redirects user to form-dump | Pass | User must click 'Back' button to return |
+|18 | Logged out user manually loads a profile page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive18.png) |
+|19 | Click on link in navbar | User specific profile loads | Pass | |
+|20 | Logged in user clicks create profile button | Create profile form loads | Pass | |
+|21 | Logged out user clicks create profile button | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive21.png) |
+|22 | Logged in user clicks update profile button | Update profile form loads | Pass | |
+|23 | Logged in user manually changes URL of update profile form | Error due to user checking in views file | Pass | ![screenshot](documentation/testing/defensive23.png) |
+|24 | Logged out user manually accesses profile update form | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive24.png)  |
+|25 | Logged in user clicks delete profile button | Delete profile warning message is displayed | Pass | |
+|26 | Logged in user manually changes URL of delete profile form | Delete profile warning message is displayed | Pass | ![screenshot](documentation/testing/defensive26.png) |
+|27 | Logged out user clicks delete profile button | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive27.png) |
 | Leader Tools | | | | |
 | | Click on Sign Up button | Redirection to Sign Up page | Pass | |
 | | Enter valid email address | Field will only accept email address format | Pass | |
