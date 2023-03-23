@@ -151,7 +151,7 @@ Defensive programming was manually tested with the below user acceptance testing
 | Run List | | | | |
 |3 | Logged out user manually loads the page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive3.png) |
 |4 | Click on Run List link in nav bar | Base page loads for logged in users | Pass | |
-|5 | User with leader credetials clicks on link in nav bar | Extra register details only displayed to users with leader group credentials | Pass | |
+|5 | User with leader credentials clicks on link in nav bar | Extra register details only displayed to users with leader group credentials | Pass | |
 |6 | User with leader credentials follows profile link from register | Runner profile displayed | Pass | |
 |7 | User without leader credentials manually loads profile page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive7.png) |
 |8 | Logged out user manually loads profile page | Error as no request will be returned from the database | Pass | ![screenshot](documentation/testing/defensive8.png) |
@@ -174,13 +174,11 @@ Defensive programming was manually tested with the below user acceptance testing
 |24 | Logged out user manually accesses profile update form | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive24.png)  |
 |25 | Logged in user clicks delete profile button | Delete profile warning message is displayed | Pass | |
 |26 | Logged in user manually changes URL of delete profile form | Delete profile warning message is displayed | Pass | ![screenshot](documentation/testing/defensive26.png) |
-|27 | Logged out user clicks delete profile button | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive27.png) |
+|27 | Logged out user manually loads delete profile link | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive27.png) |
 | Leader Tools | | | | |
-| | Click on Sign Up button | Redirection to Sign Up page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password (twice) | Field will only accept password format | Pass | |
-| | Click on Sign Up button | Asks user to confirm email page | Pass | Email sent to user |
-| | Confirm email | Redirects user to blank Sign In page | Pass | |
+|28 | User with leader credentials clicks on link | Leader tools page displayed | Pass | |
+|29 | User manually loads link | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive29.png) |
+|30 | Logged out user manually loads link  | Message displayed to sign in | Pass | ![screenshot](documentation/testing/defensive30.png) |
 | Sign In | | | | |
 | | Click on the Login link | Redirection to Login page | Pass | |
 | | Enter valid email address | Field will only accept email address format | Pass | |
