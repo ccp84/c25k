@@ -179,44 +179,32 @@ Defensive programming was manually tested with the below user acceptance testing
 |28 | User with leader credentials clicks on link | Leader tools page displayed | Pass | |
 |29 | User manually loads link | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive29.png) |
 |30 | Logged out user manually loads link  | Message displayed to sign in | Pass | ![screenshot](documentation/testing/defensive30.png) |
-| Sign In | | | | |
-| | Click on the Login link | Redirection to Login page | Pass | |
-| | Enter valid email address | Field will only accept email address format | Pass | |
-| | Enter valid password | Field will only accept password format | Pass | |
-| | Click Login button | Redirects user to home page | Pass | |
 | Sign Up | | | | |
-| | Click Logout button | Redirects user to logout page | Pass | Confirms logout first |
-| | Click Confirm Logout button | Redirects user to home page | Pass | |
-| Log Out | | | | |
-| | Click on Profile button | User will be redirected to the Profile page | Pass | |
-| | Click on the Edit button | User will be redirected to the edit profile page | Pass | |
-| | Click on the My Orders link | User will be redirected to the My Orders page | Pass | |
-| | Brute forcing the URL to get to another user's profile | User should be given an error | Pass | Redirects user back to own profile |
+|31 |  | Sign up form requires first and last name input | Pass | ![screenshot](documentation/testing/defensive31.png) |
+|32 |  | Username meets standard requirements | Pass | ![screenshot](documentation/testing/defensive32.png) |
+|33 |  | Password is entered the same twice | Pass | ![screenshot](documentation/testing/defensive33.png) |
+
 
 ## User Story Testing
 
-⚠️⚠️⚠️⚠️⚠️ START OF NOTES (to be deleted) ⚠️⚠️⚠️⚠️⚠️
-
-Testing user stories is actually quite simple, once you've already got the stories defined on your README.
-
-Most of your project's **features** should already align with the **user stories**,
-so this should as simple as creating a table with the user story, matching with the re-used screenshot
-from the respective feature.
-
-🛑🛑🛑🛑🛑 END OF NOTES (to be deleted) 🛑🛑🛑🛑🛑
-
 | User Story | Screenshot |
 | --- | --- |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature01.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature02.png) |
-| As a new site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature03.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature04.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature05.png) |
-| As a returning site user, I would like to ____________, so that I can ____________. | ![screenshot](documentation/feature06.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature07.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature08.png) |
-| As a site administrator, I should be able to ____________, so that I can ____________. | ![screenshot](documentation/feature09.png) |
-| repeat for all remaining user stories | x |
+| As a visitor I want to be able to get information about the site so that I can decide whether to sign up or not | ![screenshot](documentation/testing/user_story_1.png) |
+| As a registered user I want to be able to view a list of the upcoming planned runs so that I can see where and when the next training sessions will be | ![screenshot](documentation/testing/user_story_2.png) |
+| As a leader I want to be able to add a run so that runners can see when the next session is | ![screenshot](documentation/testing/user_story_3.png) |
+| As a leader I want to be able to change or delete the details of a run in case of a change of plans | ![screenshot](documentation/testing/user_story_4.png) |
+| As a leader I want to be able to delete runs that are no longer happening | ![screenshot](documentation/testing/user_story_5.png) |
+| As a registered user I want to be able to log in to my account to access the extra features available to me as a runner or a leader | ![screenshot](documentation/testing/user_story_6.png) |
+| As a registered user I want to be able to log out so that I can protect my account | ![screenshot](documentation/testing/user_story_7.png) |
+| As a runner/leader I want to be able to sign up so that I can access advanced featured of the site | ![screenshot](documentation/testing/user_story_8.png) |
+| As a runner I want to alert the run leader that I intend to attend an advertised run | ![screenshot](documentation/testing/user_story_9.png) |
+| As a leader I want to be able to see a list of signed up runners for a session so that I do not start without them | ![screenshot](documentation/testing/user_story_10.png) |
+| As a registered user I want to be able to edit my details | ![screenshot](documentation/testing/user_story_11.png) |
+| As a runner I want to be able to add an emergency contact and medical details for the run leader in case of incident during the session | ![screenshot](documentation/testing/user_story_12.png) |
+| As a visitor I want my browsing experience to be enjoyable and enhanced by overall site styling | ![screenshot](documentation/testing/user_story_13.png) |
+| As a leader I want to be able to view each runners emergency details incase of incidents during a session | ![screenshot](documentation/testing/user_story_14.png) |
+| As a superuser I want to be able to change runner profiles into leader profiles without having to log into the admin panel of the site | ![screenshot](documentation/testing/user_story_15.png) |
+| As a leader I want to mark runners as completed to keep a database of graduates from the course | ![screenshot](documentation/testing/user_story_16.png) |
 
 ## Automated Testing
 
