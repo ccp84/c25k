@@ -71,10 +71,17 @@ With a custom html template to display the correct elements to each user depende
 {% else %}
 # A message is displayed inviting the user to log in, although the page is only shown in the nav bar for authenticated users
 ```
-This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the grouo of leader can also access links to edit and delete runs from the list here, as well as adding a new run from the bottom of the list. 
+This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the group of leader can also access links to edit and delete runs from the list here, as well as having access to the link to add a new run. 
 
 ### Create Run
-This feature is only accessible by authenticated users who have a group tag of leader. It makes use of the django generic CBV 'CreateView':
+This feature is only accessible by authenticated users who have a group tag of leader
+```html
+{% if request.user.groups.all.0.name == 'leader' %}
+    <!-- Restrict form to users authenticated as leaders -->
+{% else %}
+    <!-- Message displayed here informs users they need leader status for this page -->
+```
+It makes use of the django generic CBV 'CreateView' with the LoginRequiredMixin for additional page security and the SuccessMessageMixin to return a note to the user informing them that their action has been carried out on form submission:
 ```python
 class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Run
