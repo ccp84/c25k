@@ -432,6 +432,12 @@ Logged in superuser accounts have the ability to remove users from the leaders g
 
 ## Future Features
 
+* Adding a 'completed' flag to runners' profiles which can be toggled by a group leader once they have completed the course. This will allow for a database of course alumni. 
+* Adding run categories so that new course participants can follow the structure of the next 9 week course, whilst graduates could have progression runs available to them for further onwards support.
+* Further separating the functionality for a whole club approach to encorporate half/marathon training, Sunday Long Run group, cross contry team, etc to all have their own filters. 
+* Ability for leaders to add messages onto the front screen of the app incase of run cancellations so that runners could check for updates before setting out to a training session that may no longer be running, or may have changed location. 
+* Auto delete of past runs so that anything prior to 'today' does not appear on the system. 
+
 ## Testing
 
 Link to the [TESTING.md](TESTING.md) file.
@@ -568,19 +574,33 @@ You can fork this repository by using the following steps:
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
 
 ## Technologies Used
-* Git - Version control and project flow management
-* [GitHub](https://github.com/)
-* [Elephant Sql](https://www.elephantsql.com/)
-* [Heroku](https://www.heroku.com/home)
 
-## Credits
+This project is built using the following languages and frameworks:
+* HTML
+* CSS
+* Python 
+* Bootstrap
+* Django
+
+I have used tools to assist me as a developer:
+* Git - Version control and project flow management
+* [GitHub](https://github.com/) - Cloud hosting of project files
+* [Heroku](https://www.heroku.com/home) - Cloud hosting of deployed project
+* [Cloudinary](https://cloudinary.com/) - Cloud storage for static files
+* SQlite - Development and testing SQL server
+* [Elephant Sql](https://www.elephantsql.com/) - Live hosted Postgresql project database
 * [Lucid](https://lucid.app/) - Used to create ERD
 * Balsamiq - Used to create wireframes
 * paint.net - Used for image manipulation
+* [Font Awesome](https://fontawesome.com/) - Icons used throughout the project.
+
+## Credits
+
 * [Codecademy django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - This course introduced me to the use of the generic CBV's for Create, Update and Delete.
 * [Code to filter by user group](https://stackoverflow.com/questions/73371568/how-to-check-user-group-in-django-template) - The code for filtering based on a users group was taken from this stack overflow article.
 * [Code to add used to a group](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) - The function to make runners into leaders was built using this stack overflow thread.
 * [Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
-* [Font Awesome](https://fontawesome.com/) - Icons used throughout the project.
 * [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the django documentation here.
 * [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) - Used for readme and testing document templates
+* My mentor Tim Nelson - For support and guidance throughout this project
+* Code Institute Slack Community - For their help with troubleshooting, testing and reviewing the project
