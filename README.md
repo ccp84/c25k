@@ -2,20 +2,20 @@
 
 ## Concept 
 
-This django app will be a runner registration tool for c25k groups. Currently leaders have to rely on Whatsapp group chats to know if the participants are attending each session or not and can be left waiting around for runners they think are due to attend who either haven't posted in the chat group that they aren't coming, have said they are unable to come but the leaders have missed the message, or have previously said they were coming and changed their mind but not notified the leader. Similiarly, participants who are running late but who the leader doesn't know to wait for may find that the group has already left the start point if they miss the start time. This project aims to fix that as its core aim.
+This Django app will be a runner registration tool for c25k groups. Currently, leaders have to rely on Whatsapp group chats to know if the participants are attending each session or not and can be left waiting around for runners they think are due to attend who either haven't posted in the chat group that they aren't coming, have said they are unable to come but the leaders have missed the message, or have previously said they were coming and changed their mind but not notified the leader. Similarly, participants who are running late but who the leader doesn't know to wait for may find that the group has already left the start point if they miss the start time. This project aims to fix that as its core aim.
 
 ## Project Scope
 
-* It will allow run leaders to advertise the details of each weeks date, time and start location. As well as giving any additional details such as parking facilities, if trail shoes are needed, or other key information to be relayed before the start.
+* It will allow run leaders to advertise the details of each week's date, time and start location. As well as giving any additional details such as parking facilities, if trail shoes are needed, or other key information to be relayed before the start.
 * It will allow site visitors to view a basic list of the planned activities, and register for a user account to gain access to further detail.
-* It will allow logged in runners to see all of the details the leader has posted about the run.
-* It should allow logged in runners to sign up and state that they are planning on attending a run / remove their name from the list if they change their mind. 
+* It will allow logged-in runners to see all of the details the leader has posted about the run.
+* It should allow logged-in runners to sign up and state that they are planning on attending a run / remove their name from the list if they change their minds. 
 * It should allow leaders to view a list of runners who are planning to attend each session. 
 * It should allow registered users to view and edit their details. 
-* The overall site should have a main colour theme on completion and function with mobile first design in mind.
+* The overall site should have a main colour theme on completion and function with a mobile-first design in mind.
 * It could be used to mark runners as completed to maintain a list of graduates within the database, and list graduate runs following on from the main course. 
-* It could be used for runners to add an emergency contact to their account which run leaders will be able to access during sessions in case of incident during the run.  
-* It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the adin panel. 
+* It could be used for runners to add an emergency contact to their account which run leaders will be able to access during sessions in case of an incident during the run.  
+* It could allow leaders to manage the user status of registered accounts to update the list of leaders rather than having to log into the admin panel. 
 * It could enable the club to advertise details of the next course and allow runners to sign up in readiness for the start date. 
 
 Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/4/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D). Any remaining features outside of this project's timeframe will be moved to 'won't have', and in production would become part of the next release or future features.
@@ -56,22 +56,22 @@ Using MoSCoW prioritisation these functions have been prioritised as 'must have'
 | 4. User Authentication | 
 
 ### Run List 
-This feature has been developed using the django generic CBV 'ListView':
+This feature has been developed using the Django generic CBV 'ListView':
 ```python
 class RunList(ListView):
     model = Run
     template = 'run_list.html'
 ```
-With a custom html template to display the correct elements to each user dependent on their authentication status:
+With a custom HTML template to display the correct elements to each user depending on their authentication status:
 ```python
 {% if user.is_authenticated %}
 # List of current runs is displayed for the user
     {% if request.user.groups.all.0.name == 'leader' %}
-    # User has ability to edit and delete the listed run, as well as a button to add a new run
+    # Leader can edit and delete the listed run, as well as a button to add a new run
 {% else %}
 # A message is displayed inviting the user to log in, although the page is only shown in the nav bar for authenticated users
 ```
-This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the group of leader can also access links to edit and delete runs from the list here, as well as having access to the link to add a new run. 
+This page hosts the main functionality of the project allowing only authenticated users to see the full details of each run, as opposed to the basic list on the welcome page. Users tagged with the group of leader can also access links to edit and delete runs from the list here, as well as have access to the link to add a new run. 
 
 ### Create Run
 This feature is only accessible by authenticated users who have a group tag of leader
@@ -81,7 +81,7 @@ This feature is only accessible by authenticated users who have a group tag of l
 {% else %}
     <!-- Message displayed here informs users they need leader status for this page -->
 ```
-It makes use of the django generic CBV 'CreateView' with the LoginRequiredMixin for additional page security and the SuccessMessageMixin to return a note to the user informing them that their action has been carried out on form submission:
+It makes use of the Django generic CBV 'CreateView' with the LoginRequiredMixin for additional page security and the SuccessMessageMixin to return a note to the user informing them that their action has been carried out on form submission:
 ```python
 class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Run
@@ -95,7 +95,7 @@ and the standard form for this view, which will be styled in a later part of the
 ![run_create_form](documentation/run_create_form.png)
 
 ### Edit Run
-This feature is very similar to the creation of a new run, and can only be accessed by authenticated users who are leaders. It uses the generic django 'UpdateView':
+This feature is very similar to the creation of a new run, and can only be accessed by authenticated users who are leaders. It uses the generic Django 'UpdateView':
 ```python
 class RunUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Run
@@ -108,11 +108,11 @@ and again imports the standard form as well. However, the URL associated with th
 ```python
 path("run/update/<pk>", views.RunUpdate.as_view(), name='run_update')
 ```
-This is passed in from the html template via the anchor tag:
+This is passed in from the HTML template via the anchor tag:
 ```html
 <td><a href="{% url 'run_update' run.id %}">Edit</a></td>
 ```
-The result is not only that the correct database record is updated, but also that the rendered form is pre populated for editing:
+The result is not only that the correct database record is updated, but also that the rendered form is pre-populated for editing:
 
 ![run_edit_form](documentation/run_edit_form.png)
 
@@ -139,13 +139,13 @@ path("run/delete/<pk>", views.RunDelete.as_view(), name='run_delete')
 ### Logging in / out
 
 For user authentication I have used the allauth library, implementing the techniques used in the Code Institute walkthrough project. 
-Once installed, and the allauth URLs imported into the project URLs.py document, log in / out is handled by the standard templates. To tidy these up and get them sitting within my main project base template I copied the allauth templates into my project and edited the `{% extends '' %}` line at the top of each of the default files. 
+Once installed, and the allauth URLs imported into the project URLs.py document, log-in / log-out is handled by the standard templates. To tidy these up and get them sitting within my main project base template I copied the allauth templates into my project and edited the `{% extends '' %}` line at the top of each of the default files. 
 
 ![login_page](documentation/login.png)
 
 ### Signup
 
-Signing up for an account also uses allauth, however I have modified the standard allauth template so that the user is forced to complete a firstname and lastname (which are standard in the allauth library just not included in the standard signup process.)
+Signing up for an account also uses allauth, however, I have modified the standard allauth template so that the user is forced to complete a first name and last name (which are standard in the allauth library just not included in the standard signup process.)
 
 The code added to forms.py to achieve this is :
 ```python
@@ -160,22 +160,22 @@ class SignupForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.save()
 ```
-For my project, a first and last name are required when signing up for runs so the leader knows who is attending. It made more sense to use the built in allauth fields than to include these in the separate Profile model. The code to implement this was found following [this thread](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) on stack overflow.
+For my project, a first and last name are required when signing up for runs so the leader knows who is attending. It made more sense to use the built-in allauth fields than to include these in the separate Profile model. The code to implement this was found following [this thread](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) on stack overflow.
 
 ![sign up](documentation/sign_up.png)
 
 ## REVIEW POINT 2
-| At this point I have completed all project must have criteria and moved those user stories to completed. Looking at the next stage of project features, I will prioritise the should have user stories as follows:| ![review_point_2](documentation/project_review_2.png) |
+| At this point, I have completed all project 'must have' criteria and moved those user stories to complete. Looking at the next stage of project features, I will prioritise the 'should have' user stories as follows:| ![review_point_2](documentation/project_review_2.png) |
 | -------------------------------------------- | ------------------------------------- |
-| 1. Adding the ability for a user to sign up to a run |
-| 2. Adding a feature for the run leader to see a register / list of signed up runners |
+| 1. Adding the ability for a user to sign up for a run |
+| 2. Adding a feature for the run leader to see a register/list of signed-up runners |
 | 3. Allowing users to update their profile information |
 | 4. Applying styling for an overall site theme |
 
 
 ### Displaying system messages
 
-I have included django messages to be displayed at the top of my base template, so that the user is notified when they have successfully performed actions that trigger a system message. 
+I have included Django messages to be displayed at the top of my base template so that the user is notified when they have successfully performed actions that trigger a system message. 
 ```html
 {% if messages %}
     <div>
@@ -219,7 +219,7 @@ def signed_up(self):
             name_list.append(runner.id) # append the id of each runner in the list to the empty list initialised at the start
         return name_list # return this list to be used when the signed_up field of a run is called
 ```
-A list `runner_list` is populated from running a query to retrieve all currently linked users on the many:many `run.runners` field. Then to return useable data to the django template, this list is iterated and the user id field for each object contained in the link is pushed into a blank list `name_list`. This is then returned by the method and is ready for use when called in the template.
+A list `runner_list` is populated from running a query to retrieve all currently linked users on the many:many `run.runners` field. Then to return useable data to the Django template, this list is iterated and the user id field for each object contained in the link is pushed into a blank list `name_list`. This is then returned by the method and is ready for use when called in the template.
 ```html
 {% if user.id in run.signed_up %}
                 <button type="submit" name="run_id" value="{{run.id}}">
@@ -231,12 +231,12 @@ A list `runner_list` is populated from running a query to retrieve all currently
                 </button>
 {% endif %}
 ```
-The returned list is checked for the currently logged in user id. If found, a green 'already in' version of the 'Count me in' button is displayed. Othewise a red button is displayed to indicate that they have not signed up for that session. PLEASE NOTE : The in line styling will be removed when custom CSS is added to the project later, however for the purposes of getting this feature to work this is the quickest way to test functionality for now. 
+The returned list is checked for the currently logged-in user id. If found, a green 'already in' version of the 'Count me in' button is displayed. Otherwise, a red button is displayed to indicate that they have not signed up for that session. PLEASE NOTE: The in-line styling will be removed when custom CSS is added to the project later, however, to get this feature to work this is the quickest way to test functionality for now. 
 
 ![count_me_in](documentation/count_me_in.png)
 
 ### Viewing a run register
-Leaders are able to see a list of runners signed up for each run in the leader only view of the run list page. A function returns a list of names from the Run table:
+Leaders can see a list of runners signed up for each run in the leader-only view of the run list page. A function returns a list of names from the Run table:
 ```python
 def take_register(self):
     register = [] # initialise empty list
@@ -266,7 +266,7 @@ The user profile page checks for existing details in a retrieved user profile, i
     </div>
 </div>
 ```
-This view uses the generic create view, and rather than displaying user as a field, adds the currently logged in user when the form is returned to create the foreign key link between Profile and User tables.
+This view uses the generic create view, and rather than displaying user as a field, adds the currently logged-in user when the form is returned to create the foreign key link between Profile and User tables.
 ```python
 class ProfileCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Profile
@@ -282,7 +282,7 @@ class ProfileCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 ![profile_create](documentation/profile_create.png)
 
 ### Viewing a user profile
-Once a user has created a profile, the profile page displays their user details to them. The Profile table is filtered with the currently logged in users id and the relevant instance returned as context for display. 
+Once a user has created a profile, the profile page displays their user details to them. The Profile table is filtered with the currently logged-in users id and the relevant instance returned as context for display. 
 ```python
 class ProfileView(LoginRequiredMixin, View):
 
@@ -294,7 +294,7 @@ class ProfileView(LoginRequiredMixin, View):
 ![profile view](documentation/profile_view.png)
 
 ### Updating a user profile
-Users have the option to update their details, updating uses the generic Update view. Instead of relying on the primary key passed through in the URL to populate the form for updating however, I have used a queryset which takes the currently logged in user id to return that users details. This means that even if you were to change the URL manually you would be unable to view another runners profile page. 
+Users have the option to update their details, updating uses the generic Update view. Instead of relying on the primary key passed through in the URL to populate the form for updating, however, I have used a queryset which takes the currently logged-in user id to return that users details. This means that even if you were to change the URL manually you would be unable to view another runner's profile page. 
 ```python
 class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Profile
@@ -307,11 +307,11 @@ class ProfileUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         query_set = Profile.objects.filter(user=self.request.user)
         return query_set
 ```
-As you can see here, the id is 20 when followed although this isnt what is returning the data into the form. But currently all is working:
+As you can see here, the id is 20 when followed although this isn't what is returning the data into the form. But currently, all is working:
 
 ![profile_edit_ok](documentation/profile_edit_success.png)
 
-If I change the URL manually to try and access another users data, I will get an error and not be allowed to view this page:
+If I change the URL manually to try and access another user's data, I will get an error and not be allowed to view this page:
 
 ![profile_edit_error](documentation/profile_edit_error.png)
 
@@ -331,15 +331,15 @@ class ProfileDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):
 ![profile delete](documentation/profile_delete.png)
 
 ## REVIEW POINT 3
-|Now that all of the critical user functionality is working, all that remains to work through are the could have points on the project board. I have prioritised these as follows. :| ![review_point_3](documentation/project_review_3.png) |
+|Now that all of the critical user functionality is working, all that remains to work through are the 'could have' points on the project board. I have prioritised these as follows. :| ![review_point_3](documentation/project_review_3.png) |
 | -------------------------------------------- | ------------------------------------- |
 | 1. Allowing users to add their ICE details to their profile |
-| 2. Allowing leaders to view runners details |
+| 2. Allowing leaders to view runners' details |
 | 3. Allowing leaders to update user account types from the front end |
 | 4. Allowing leaders to graduate runners once they have completed the course |
 
 ### Allowing users to add ICE details to their profile
-This user story was not really necessary upon reflection and was covered in the 'Updating a user profile' step. So was automatically moved to completed.
+This user story was not necessary upon reflection and was covered in the 'Updating a user profile' step. So was automatically moved to completed.
 
 ### Viewing runner details from the run list page
 This is achieved by developing a similar view to the User Profile view with a few minor alterations to allow an authorised leader to view details that do not belong to them. 
@@ -357,12 +357,12 @@ class RunnerProfile(LoginRequiredMixin, View):
 
         return render(request, 'runner_profile.html', context)
 ```
-The view uses an id passed in from the runner details that are clicked on from the register to query the Profile table and return the record associated with that id, rather than the currently logged in used which would be the leader. This displays the relevant runners profile, if they have set one up and allows the leader to see their ICE and medical information if they have chosen to provide it. 
+The view uses an id passed in from the runner details that are clicked on from the register to query the Profile table and return the record associated with that id, rather than the currently logged-in user which would be the leader. This displays the relevant runners' profile if they have set one up and allows the leader to see their ICE and medical information if they have chosen to provide it. 
 
 ![runner_profile](documentation/runner_profile.png)
 
 ### Allow leaders to update user account types
-Leader account types have been implemented using a leader group in Postgres. In order to avoid new leader accounts having to be made via the admin panel a leader tools page was created that gives an overview of all user accounts registered to the system. 
+Leader account types have been implemented using a leader group in Postgres. To avoid new leader accounts having to be made via the admin panel a leader tools page was created that gives an overview of all user accounts registered to the system. 
 ```python
 class UserList(LoginRequiredMixin, ListView):
 
@@ -380,7 +380,7 @@ class UserList(LoginRequiredMixin, ListView):
         }
         return render(request, 'user_list.html', context)
 ```
-The generic ListView returns all objects from the User model, as well as some extra filtering being done to determine wether each user is a member of the 'leader' group to allow the page to provide functionality for toggling account types. It is also used to highlight in the list which are the already designated leaders for easier viewing. 
+The generic ListView returns all objects from the User model, as well as some extra filtering being done to determine whether each user is a member of the 'leader' group to allow the page to provide functionality for toggling account types. It is also used to highlight in the list which are the already designated leaders for easier viewing. 
 
 ![user_list](documentation/user_list.png)
 
@@ -394,7 +394,7 @@ All authorised leaders have access to be able to add any user account to the lea
 ```
 And via the same if statement checking before displaying any page content. 
 
-For safety though, leader accounts can only add users to this group they cannot remove other users access rights. 
+For safety though, leader accounts can only add users to this group they cannot remove other users' access rights. 
 ```python
 def make_leader(request, id):
 
@@ -409,11 +409,11 @@ def make_leader(request, id):
     return HttpResponseRedirect(reverse('user_list'))
 ```
 
-This function takes in the id of the user that was clicked on from the url and uses it to filter the User table. The returned User object then has the group 'leader' added to its list of groups. The filtering to fetch groups was researched using [this thread](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) on stack overflow. 
+This function takes in the id of the user that was clicked on from the URL and uses it to filter the User table. The returned User object then has the group 'leader' added to its list of groups. The filtering to fetch groups was researched using [this thread](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) on stack overflow. 
 
 ![make_leader](documentation/make_leader.png)
 
-Logged in superuser accounts have the ability to remove users from the leaders group. The function to do this is identical to adding with the change of 1 line from `runner.groups.add(leaders_group)` to `runner.groups.remove(leaders_group)`. The authentication checking for this ability is done in the django template. 
+Logged-in superuser accounts can remove users from the leaders group. The function to do this is identical to adding with the change of 1 line from `runner.groups.add(leaders_group)` to `runner.groups.remove(leaders_group)`. The authentication checking for this ability is done in the Django template. 
 ```html
 {% if request.user.is_superuser %}
 <li class="btn btn-danger">
@@ -433,10 +433,10 @@ Logged in superuser accounts have the ability to remove users from the leaders g
 ## Future Features
 
 * Adding a 'completed' flag to runners' profiles which can be toggled by a group leader once they have completed the course. This will allow for a database of course alumni. 
-* Adding run categories so that new course participants can follow the structure of the next 9 week course, whilst graduates could have progression runs available to them for further onwards support.
-* Further separating the functionality for a whole club approach to encorporate half/marathon training, Sunday Long Run group, cross contry team, etc to all have their own filters. 
-* Ability for leaders to add messages onto the front screen of the app incase of run cancellations so that runners could check for updates before setting out to a training session that may no longer be running, or may have changed location. 
-* Auto delete of past runs so that anything prior to 'today' does not appear on the system. 
+* Adding run categories so that new course participants can follow the structure of the next 9-week course, whilst graduates could have progression runs available to them for further onward support.
+* Further separating the functionality for a whole club approach to incorporate half/marathon training, Sunday Long Run group, cross country team, etc to all have their own filters. 
+* The ability for leaders to add messages onto the front screen of the app in case of run cancellations so that runners could check for updates before setting out to a training session that may no longer be running, or may have changed location. 
+* Auto delete of past runs so that anything before 'today' does not appear on the system. 
 
 ## Testing
 
@@ -596,11 +596,11 @@ I have used tools to assist me as a developer:
 
 ## Credits
 
-* [Codecademy django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - This course introduced me to the use of the generic CBV's for Create, Update and Delete.
+* [Codecademy Django course](https://www.codecademy.com/paths/build-python-web-apps-with-django/) - This course introduced me to the use of the generic CBV's for Create, Update and Delete.
 * [Code to filter by user group](https://stackoverflow.com/questions/73371568/how-to-check-user-group-in-django-template) - The code for filtering based on a users group was taken from this stack overflow article.
-* [Code to add used to a group](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) - The function to make runners into leaders was built using this stack overflow thread.
-* [Modifications to allauth standard sign up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
-* [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the django documentation here.
+* [Code to add users to a group](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) - The function to make runners into leaders was built using this stack overflow thread.
+* [Modifications to allauth standard sign-up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
+* [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the Django documentation here.
 * [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) - Used for readme and testing document templates
 * My mentor Tim Nelson - For support and guidance throughout this project
 * Code Institute Slack Community - For their help with troubleshooting, testing and reviewing the project
