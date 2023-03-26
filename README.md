@@ -165,8 +165,7 @@ For my project, a first and last name are required when signing up for runs so t
 ![sign up](documentation/sign_up.png)
 
 ## REVIEW POINT 2
-|At this point I have completed all project must have criteria and moved those user stories to completed. 
-Looking at the next stage of project features, I will prioritise the should have user stories as follows:| ![review_point_2](documentation/project_review_2.png) |
+| At this point I have completed all project must have criteria and moved those user stories to completed. Looking at the next stage of project features, I will prioritise the should have user stories as follows:| ![review_point_2](documentation/project_review_2.png) |
 | -------------------------------------------- | ------------------------------------- |
 | 1. Adding the ability for a user to sign up to a run |
 | 2. Adding a feature for the run leader to see a register / list of signed up runners |
@@ -214,11 +213,11 @@ def run_join(request, pk):
 An additional database method was needed to achieve this. 
 ```python
 def signed_up(self):
-        name_list = []
-        runner_list = self.runners.all()
-        for runner in runner_list:
-            name_list.append(runner.id)
-        return name_list
+        name_list = [] # initialise an empty list
+        runner_list = self.runners.all() # return all runner objects linked to that run object
+        for runner in runner_list: # loop the list of runners
+            name_list.append(runner.id) # append the id of each runner in the list to the empty list initialised at the start
+        return name_list # return this list to be used when the signed_up field of a run is called
 ```
 A list `runner_list` is populated from running a query to retrieve all currently linked users on the many:many `run.runners` field. Then to return useable data to the django template, this list is iterated and the user id field for each object contained in the link is pushed into a blank list `name_list`. This is then returned by the method and is ready for use when called in the template.
 ```html
@@ -240,11 +239,11 @@ The returned list is checked for the currently logged in user id. If found, a gr
 Leaders are able to see a list of runners signed up for each run in the leader only view of the run list page. A function returns a list of names from the Run table:
 ```python
 def take_register(self):
-    register = []
-    runner_list = self.runners.all()
-    for runner in runner_list:
-        register.append([runner.first_name, runner.last_name])
-    return register
+    register = [] # initialise empty list
+    runner_list = self.runners.all() # get all runner objects linked by the foreign key
+    for runner in runner_list: # loop each object returned
+        register.append([runner.first_name, runner.last_name]) # append the first_name and last_name fields of the runner object to the empty list
+    return register # return this new list when the take_register property of a run is called
 ```
 This function is then used to produce a list of names linked to each run:
 ```html
@@ -259,7 +258,7 @@ This function is then used to produce a list of names linked to each run:
 ### Creating a user profile
 The user profile page checks for existing details in a retrieved user profile, if the returned profile is empty then the create profile link is displayed. 
 ```html
-{% empty %}
+ {% empty %}
 <div class="row">
     <div class="col-12">
         <a href="{% url 'profile_create' %}"><button type="button" class="btn btn-secondary">Create Your
@@ -427,6 +426,8 @@ Logged in superuser accounts have the ability to remove users from the leaders g
 
 ## REVIEW POINT 4
 |At the final review point of the project. Both documentation points remain to be finished and I have moved the last feature to won't have. | ![review_point_4](documentation/project_review_4.png) |
+| ----------------------------------- | ----------------------------------------------------  |
+|                                     |                                                       |
 
 
 ## Future Features
