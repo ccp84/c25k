@@ -1,6 +1,6 @@
 # Testing
 
-Return back to the [README.md](README.md) file.
+Return to the [README.md](README.md) file.
 
 ## Code Validation
 
@@ -122,8 +122,8 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | --- | --- | --- | --- |
 | Home | Mobile | ![screenshot](documentation/testing/lighthouse_home_mobile.png) | Warning for bootstrap JS link |
 | Home | Desktop | ![screenshot](documentation/testing/lighthouse_home_desktop.png) | Warning for bootstrap CDN links |
-| Run List | Mobile | ![screenshot](documentation/testing/lighthouse_runlist_mobile.png) | Warning for out of order headings and poor contrast on green button |
-| Run List | Desktop | ![screenshot](documentation/testing/lighthouse_runlist_desktop.png) | Warning for non sequential headings, poor contrast on green button and bootstrap JS link |
+| Run List | Mobile | ![screenshot](documentation/testing/lighthouse_runlist_mobile.png) | Warning for out-of-order headings and poor contrast on green button |
+| Run List | Desktop | ![screenshot](documentation/testing/lighthouse_runlist_desktop.png) | Warning for non-sequential headings, poor contrast on green button and bootstrap JS link |
 | Add / Edit Form | Mobile | ![screenshot](documentation/testing/lighthouse_add_mobile.png) | Warning for bootstrap CDN links,  |
 | Add / Edit Form | Desktop | ![screenshot](documentation/testing/lighthouse_add_desktop.png) | Warning for JS link |
 | Delete | Mobile | ![screenshot](documentation/testing/lighthouse_delete_mobile.png) | Warning for bootstrap JS link |
@@ -150,8 +150,8 @@ Defensive programming was manually tested with the below user acceptance testing
 |2 | Click on Home link in navbar | Redirection to Home page | Pass | |
 | Run List | | | | |
 |3 | Logged out user manually loads the page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive3.png) |
-|4 | Click on Run List link in nav bar | Base page loads for logged in users | Pass | |
-|5 | User with leader credentials clicks on link in nav bar | Extra register details only displayed to users with leader group credentials | Pass | |
+|4 | Click on Run List link in nav bar | Base page loads for logged-in users | Pass | |
+|5 | User with leader credentials clicks on the link in nav bar | Extra register details only displayed to users with leader group credentials | Pass | |
 |6 | User with leader credentials follows profile link from register | Runner profile displayed | Pass | |
 |7 | User without leader credentials manually loads profile page | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive7.png) |
 |8 | Logged out user manually loads profile page | Error as no request will be returned from the database | Pass | ![screenshot](documentation/testing/defensive8.png) |
@@ -167,20 +167,20 @@ Defensive programming was manually tested with the below user acceptance testing
 | Profile Page | | | | |
 |18 | Logged out user manually loads a profile page | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive18.png) |
 |19 | Click on link in navbar | User specific profile loads | Pass | |
-|20 | Logged in user clicks create profile button | Create profile form loads | Pass | |
+|20 | Logged-in user clicks create profile button | Create profile form loads | Pass | |
 |21 | Logged out user clicks create profile button | Message displayed requiring log in | Pass | ![screenshot](documentation/testing/defensive21.png) |
-|22 | Logged in user clicks update profile button | Update profile form loads | Pass | |
-|23 | Logged in user manually changes URL of update profile form | Error due to user checking in views file | Pass | ![screenshot](documentation/testing/defensive23.png) |
+|22 | Logged-in user clicks update profile button | Update profile form loads | Pass | |
+|23 | Logged-in user manually changes URL of update profile form | Error due to user checking in views file | Pass | ![screenshot](documentation/testing/defensive23.png) |
 |24 | Logged out user manually accesses profile update form | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive24.png)  |
-|25 | Logged in user clicks delete profile button | Delete profile warning message is displayed | Pass | |
-|26 | Logged in user manually changes URL of delete profile form | Delete profile warning message is displayed | Pass | ![screenshot](documentation/testing/defensive26.png) |
+|25 | Logged-in user clicks delete profile button | Delete profile warning message is displayed | Pass | |
+|26 | Logged-in user manually changes URL of delete profile form | Delete profile warning message is displayed | Pass | ![screenshot](documentation/testing/defensive26.png) |
 |27 | Logged out user manually loads delete profile link | Message displayed to log in | Pass | ![screenshot](documentation/testing/defensive27.png) |
 | Leader Tools | | | | |
 |28 | User with leader credentials clicks on link | Leader tools page displayed | Pass | |
 |29 | User manually loads link | Message displayed requiring leader access | Pass | ![screenshot](documentation/testing/defensive29.png) |
 |30 | Logged out user manually loads link  | Message displayed to sign in | Pass | ![screenshot](documentation/testing/defensive30.png) |
-| Sign Up | | | | |
-|31 |  | Sign up form requires first and last name input | Pass | ![screenshot](documentation/testing/defensive31.png) |
+| Sign-Up | | | | |
+|31 |  | Sign-up form requires first and last name input | Pass | ![screenshot](documentation/testing/defensive31.png) |
 |32 |  | Username meets standard requirements | Pass | ![screenshot](documentation/testing/defensive32.png) |
 |33 |  | Password is entered the same twice | Pass | ![screenshot](documentation/testing/defensive33.png) |
 
@@ -189,22 +189,22 @@ Defensive programming was manually tested with the below user acceptance testing
 
 | User Story | Screenshot |
 | --- | --- |
-| As a visitor I want to be able to get information about the site so that I can decide whether to sign up or not | ![screenshot](documentation/testing/user_story_1.png) |
+| As a visitor, I want to be able to get information about the site so that I can decide whether to sign up or not | ![screenshot](documentation/testing/user_story_1.png) |
 | As a registered user I want to be able to view a list of the upcoming planned runs so that I can see where and when the next training sessions will be | ![screenshot](documentation/testing/user_story_2.png) |
-| As a leader I want to be able to add a run so that runners can see when the next session is | ![screenshot](documentation/testing/user_story_3.png) |
-| As a leader I want to be able to change or delete the details of a run in case of a change of plans | ![screenshot](documentation/testing/user_story_4.png) |
-| As a leader I want to be able to delete runs that are no longer happening | ![screenshot](documentation/testing/user_story_5.png) |
-| As a registered user I want to be able to log in to my account to access the extra features available to me as a runner or a leader | ![screenshot](documentation/testing/user_story_6.png) |
-| As a registered user I want to be able to log out so that I can protect my account | ![screenshot](documentation/testing/user_story_7.png) |
-| As a runner/leader I want to be able to sign up so that I can access advanced featured of the site | ![screenshot](documentation/testing/user_story_8.png) |
-| As a runner I want to alert the run leader that I intend to attend an advertised run | ![screenshot](documentation/testing/user_story_9.png) |
-| As a leader I want to be able to see a list of signed up runners for a session so that I do not start without them | ![screenshot](documentation/testing/user_story_10.png) |
-| As a registered user I want to be able to edit my details | ![screenshot](documentation/testing/user_story_11.png) |
-| As a runner I want to be able to add an emergency contact and medical details for the run leader in case of incident during the session | ![screenshot](documentation/testing/user_story_12.png) |
-| As a visitor I want my browsing experience to be enjoyable and enhanced by overall site styling | ![screenshot](documentation/testing/user_story_13.png) |
-| As a leader I want to be able to view each runners emergency details incase of incidents during a session | ![screenshot](documentation/testing/user_story_14.png) |
-| As a superuser I want to be able to change runner profiles into leader profiles without having to log into the admin panel of the site | ![screenshot](documentation/testing/user_story_15.png) |
-| As a leader I want to mark runners as completed to keep a database of graduates from the course | ![screenshot](documentation/testing/user_story_16.png) |
+| As a leader, I want to be able to add a run so that runners can see when the next session is | ![screenshot](documentation/testing/user_story_3.png) |
+| As a leader, I want to be able to change or delete the details of a run in case of a change of plans | ![screenshot](documentation/testing/user_story_4.png) |
+| As a leader, I want to be able to delete runs that are no longer happening | ![screenshot](documentation/testing/user_story_5.png) |
+| As a registered user, I want to be able to log in to my account to access the extra features available to me as a runner or a leader | ![screenshot](documentation/testing/user_story_6.png) |
+| As a registered user, I want to be able to log out so that I can protect my account | ![screenshot](documentation/testing/user_story_7.png) |
+| As a runner/leader, I want to be able to sign up so that I can access the advanced features of the site | ![screenshot](documentation/testing/user_story_8.png) |
+| As a runner, I want to alert the run leader that I intend to attend an advertised run | ![screenshot](documentation/testing/user_story_9.png) |
+| As a leader, I want to be able to see a list of signed-up runners for a session so that I do not start without them | ![screenshot](documentation/testing/user_story_10.png) |
+| As a registered user, I want to be able to edit my details | ![screenshot](documentation/testing/user_story_11.png) |
+| As a runner, I want to be able to add an emergency contact and medical details for the run leader in case of an incident during the session | ![screenshot](documentation/testing/user_story_12.png) |
+| As a visitor, I want my browsing experience to be enjoyable and enhanced by overall site styling | ![screenshot](documentation/testing/user_story_13.png) |
+| As a leader, I want to be able to view each runner's emergency details in case of incidents during a session | ![screenshot](documentation/testing/user_story_14.png) |
+| As a superuser, I want to be able to change runner profiles into leader profiles without having to log into the admin panel of the site | ![screenshot](documentation/testing/user_story_15.png) |
+| As a leader, I want to mark runners as completed to keep a database of graduates from the course | ![screenshot](documentation/testing/user_story_16.png) |
 
 ## Automated Testing
 
