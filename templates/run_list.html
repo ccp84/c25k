@@ -9,7 +9,7 @@
                 <h1 class="text-success">Current Runs</h1>
             </div>
             <div class="col-sm-6">
-                {% if request.user.groups.all.0.name == 'leader' %}
+                {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
                 <a href="{% url 'run_create' %}" class="btn btn-warning">Add a run</a>
                 {% endif %}
             </div>
@@ -44,7 +44,7 @@
                         </form>
                     </div>
                 </div>
-                {% if request.user.groups.all.0.name == 'leader' %}
+                {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser%}
                 <div class="card-footer text-dark">
                     <h5>Signed up: <span class="badge badge-secondary badge-pill">{{ run.num_of_runners }}</span> </h5>
                     <ul>

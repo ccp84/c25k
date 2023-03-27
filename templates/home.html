@@ -33,9 +33,9 @@
                         {% if user.is_authenticated %}
                         <td>
                             {% if user.id in run.signed_up %}
-                            <i class="fas fa-running green-theme"></i>
+                            <i class="fas fa-running text-success"></i>
                             {% else %}
-                            <i class="fas fa-running red-theme"></i>
+                            <i class="fas fa-running text-danger"></i>
                             {% endif %}
                         </td>
                         {% endif %}

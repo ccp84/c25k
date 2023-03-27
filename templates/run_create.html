@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-sm-8 col-lg-6">
-            {% if request.user.groups.all.0.name == 'leader' %}
+            {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
             <!-- Restrict form to users authenticated as leaders -->
             <div class="card border-success mb-3">
                 <div class="card-header text-success bg-white">

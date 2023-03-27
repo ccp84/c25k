@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if request.user.groups.all.0.name == 'leader' %}
+{% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
 <div class="container">
     {% for details in runner %}
     <div class="row py-2">
