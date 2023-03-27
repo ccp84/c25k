@@ -592,7 +592,8 @@ I have used tools to assist me as a developer:
 * [Lucid](https://lucid.app/) - Used to create ERD
 * Balsamiq - Used to create wireframes
 * paint.net - Used for image manipulation
-* [Font Awesome](https://fontawesome.com/) - Icons used throughout the project.
+* [Font Awesome](https://fontawesome.com/) - Icons used throughout the project
+* [Font Awesome Favicon Builder](https://gauger.io/fonticon/) - For favicon
 
 ## Credits
 
