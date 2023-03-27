@@ -30,6 +30,8 @@
                                 <th>Account Type:</th>
                                     {% if is_leader %}
                                         <td> Leader </td>
+                                    {% elif details.user.is_superuser %}
+                                        <td> Super User </td>
                                     {% else %}
                                         <td> Runner </td>
                                     {% endif %}

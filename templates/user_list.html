@@ -3,59 +3,64 @@
 {% block content %}
 {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
 <div class="container">
-    <div class="row py-2">
-        <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
-            <div class="accordion" id="users_accordion">
-                <div class="card border-success mb-3">
-                    <div class="card-header bg-white">
-                        <h1 class="text-success">Current Users</h1>
-                    </div>
-                    {% for user in user_list %}
-                    <div class="card bg-white">
-                        {% if user.id in leader_ids %}
-                        <div class="card-header bg-warning" id="runner{{user.id}}">
-                        {% else %}
-                        <div class="card-header bg-white" id="runner{{user.id}}">
-                        {% endif %}
-                          <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed text-dark" type="button" data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false" aria-controls="collapse{{ user.id }}">
-                              {{ user.first_name }} {{ user.last_name }}
-                            </button>
-                          </h2>
-                        </div>
-                    
-                        <div id="collapse{{ user.id }}" class="collapse" aria-labelledby="runner{{ user.id }}" data-parent="#users_accordion">
-                          <div class="card-body">
-                            <ul>
-                                <li>Username: {{ user.username }}</li>
-                                <li>email: {{ user.email }}</li>
-                                {% if user.id in leader_ids %}
-                                <li>Account Type: Leader</li>
-                                    {% if request.user.is_superuser %}
-                                    <li class="btn btn-danger"><a href="{% url 'remove_leader' user.id %}" class="text-white">Remove Leader</a></li>
-                                    {% endif %}
-                                {% else %}
-                                <li>Account Type: Runner</li>
-                                <li class="btn btn-warning"><a href="{% url 'make_leader' user.id %}" class="text-dark">Make Leader</a></li>
-                                {% endif %}
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    {% endfor %}
-                </div>
+  <div class="row py-2">
+    <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
+      <div class="accordion" id="users_accordion">
+        <div class="card border-success mb-3">
+          <div class="card-header bg-white">
+            <h1 class="text-success">Current Users</h1>
+          </div>
+          {% for user in user_list %}
+          <div class="card bg-white">
+            <div
+              class="card-header bg-{% if user.id in leader_ids or user.is_superuser %}warning{% else %}white{% endif %}"
+              id="runner{{user.id}}">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed text-dark" type="button"
+                  data-toggle="collapse" data-target="#collapse{{ user.id }}" aria-expanded="false"
+                  aria-controls="collapse{{ user.id }}">
+                  {{ user.first_name }} {{ user.last_name }}
+                </button>
+              </h2>
             </div>
+
+            <div id="collapse{{ user.id }}" class="collapse" aria-labelledby="runner{{ user.id }}"
+              data-parent="#users_accordion">
+              <div class="card-body">
+                <ul>
+                  <li>Username: {{ user.username }}</li>
+                  <li>email: {{ user.email }}</li>
+                  {% if user.id in leader_ids%}
+                  <li>Account Type: Leader</li>
+                  {% if request.user.is_superuser %}
+                  <li class="btn btn-danger"><a href="{% url 'remove_leader' user.id %}" class="text-white">Remove
+                      Leader</a></li>
+                  {% endif %}
+                  {% elif user.is_superuser %}
+                  <li>Account Type: Super User <i class="fas fa-user-cog text-warning"></i></li>
+                  {% else %}
+                  <li>Account Type: Runner</li>
+                  <li class="btn btn-warning"><a href="{% url 'make_leader' user.id %}" class="text-dark">Make
+                      Leader</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
+      </div>
     </div>
+  </div>
 </div>
 {% else %}
 <div class="container">
-    <div class="row py-2">
-        <div class="col-12">
-            <p>You must be a leader to access this form</p>
-            <a href="{% url 'run_list' %}">Return to run list</a>
-        </div>
+  <div class="row py-2">
+    <div class="col-12">
+      <p>You must be a leader to access this form</p>
+      <a href="{% url 'run_list' %}">Return to run list</a>
     </div>
+  </div>
 </div>
 
 {% endif %}
