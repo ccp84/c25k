@@ -27,8 +27,17 @@
 							aria-label="Toggle navigation">
 							<span class="navbar-toggler-icon"></span>
 						</button>
-						<a class="navbar-brand" href="{% url 'home' %}">c25k</a>
-
+						{% if user.is_authenticated %}
+							{% if request.user.groups.all.0.name == 'leader' %}
+							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-users text-success"></i></a>
+							{% elif request.user.is_superuser %}
+							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user-cog text-success"></i></a>
+							{% else %}
+							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user text-success"></i></a>
+							{% endif %}
+						{% else %}
+						<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user-slash text-danger"></i></a>
+						{% endif %}
 						<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 							<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 								<li class="nav-item active">

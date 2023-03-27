@@ -29,6 +29,8 @@
                                 <th>Account Type:</th>
                                 {% if details.user.groups.all.0.name == 'leader' %}
                                     <td> Leader </td>
+                                {% elif request.user.is_superuser %}
+                                <td> Super User </td>
                                 {% else %}
                                     <td> Runner </td>
                                 {% endif %}
