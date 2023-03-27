@@ -43,6 +43,8 @@ I have used the recommended [CI Python Linter](https://pep8ci.herokuapp.com) to 
 | models.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/c25k/main/register/models.py) | ![screenshot](documentation/testing/py_validation_models.png) | None |
 | urls.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/c25k/main/register/urls.py) | ![screenshot](documentation/testing/py_validation_urls.png) | None |
 | views.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/c25k/main/register/views.py) | ![screenshot](documentation/testing/py_validation_views.png) | None |
+| admin.py | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/c25k/main/register/admin.py) | ![screenshot](documentation/testing/py_validation_admin.png) | None |
+| urls.py(c25k) | [CI PEP8](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/ccp84/c25k/main/c25k/urls.py) | ![screenshot](documentation/testing/py_validation_c25kurls.png) | None |
 
 
 ## Browser Compatibility
