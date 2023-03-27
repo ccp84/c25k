@@ -59,7 +59,7 @@ class Profile(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='profile')
     DOB = models.DateField(blank=True, null=True)
-    ICE = models.CharField(max_length=20, blank=True)
+    ICE = models.CharField(max_length=100, blank=True)
     medical = models.TextField(blank=True)
     completed = models.BooleanField(default=False, blank=True)
 
