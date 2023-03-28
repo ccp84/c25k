@@ -269,4 +269,6 @@ I believe this could possibly be due to limitations based on user groups needing
 
 ## Bugs
 
-There are no remaining bugs that I am aware of.
+| Page | Issues Remaining | Further considerations | Screenshots |
+| ---  | ---------------  | ------- | -----------  |             |
+| Profile update page | When the screensize reduces to below 330px width, the buttons stack on top of each other which is not particuarly clean to look at. | [This source](https://gs.statcounter.com/screen-resolution-stats/mobile/worldwide) would suggest that at least 50% of the market has a mobile resolution above this breakpoint. | ![screenshot](documentation/testing/bugs_1.png) |
