@@ -169,3 +169,24 @@ def remove_leader(request, id):
         f"{runner.first_name} was removed from the leaders group.")
 
     return HttpResponseRedirect(reverse('user_list'))
+
+
+"""
+References for customised error handling:
+https://docs.djangoproject.com/en/3.2/topics/http/views/#customizing-error-views
+https://stackoverflow.com/questions/12180281/implementing-http404-in-django/12180499#12180499
+"""
+
+
+def page_not_found_custom(request, exception):
+    """
+    Custom 404 - page not found
+    """
+    return render(request, "404.html", status=404)
+
+
+def page_error_found_custom(request):
+    """
+    Custom 500 internal server error page
+    """
+    return render(request, "500.html", status=500)

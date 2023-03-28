@@ -20,3 +20,5 @@ urlpatterns = [
     path("user/make_leader/<id>", views.make_leader, name='make_leader'),
     path("user/remove_leader/<id>", views.remove_leader, name='remove_leader'),
 ]
+handler404 = 'register.views.page_not_found_custom'
+handler500 = 'register.views.page_error_found_custom'
