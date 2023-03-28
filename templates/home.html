@@ -20,6 +20,7 @@
                         <th>Run</th>
                         <th>Date</th>
                         {% if user.is_authenticated %}
+                        <!-- additional indicator displayed when logged in -->
                         <th>Signed Up?</th>
                         {% endif %}
                     </tr>
@@ -27,11 +28,13 @@
                 <tbody>
                     {% for run in run_list %}
                     {% if forloop.counter <= 5 %}
+                    <!-- display only the next 5 runs in the list -->
                     <tr>
                         <td>{{ run.title }}</td>
                         <td>{{ run.date }}</td>
                         {% if user.is_authenticated %}
                         <td>
+                            <!-- if user id found in list display green indicator else display red -->
                             {% if user.id in run.signed_up %}
                             <i class="fas fa-running text-success"></i>
                             {% else %}
@@ -42,6 +45,7 @@
                     </tr>
                     {% endif %}
                     {% empty %}
+                    <!-- message displayed if no current runs returned from database -->
                     <p>No current runs</p>
                     {% endfor %}
                 </tbody>

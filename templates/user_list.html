@@ -2,6 +2,7 @@
 
 {% block content %}
 {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
+<!-- page only availabe to leaders/super users -->
 <div class="container">
   <div class="row py-2">
     <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
@@ -11,6 +12,7 @@
             <h1 class="text-success">Current Users</h1>
           </div>
           {% for user in user_list %}
+          <!-- loop details for returned user objects -->
           <div class="card bg-white">
             <div
               class="card-header bg-{% if user.id in leader_ids or user.is_superuser %}warning{% else %}white{% endif %}"
@@ -30,15 +32,18 @@
                 <ul>
                   <li>Username: {{ user.username }}</li>
                   <li>email: {{ user.email }}</li>
-                  {% if user.id in leader_ids%}
+                  {% if user.id in leader_ids %}
                   <li>Account Type: Leader</li>
                   {% if request.user.is_superuser %}
+                  <!-- if user object is a leader and the logged in user is a super user display remove option -->
                   <li class="btn btn-danger"><a href="{% url 'remove_leader' user.id %}" class="text-white">Remove
                       Leader</a></li>
                   {% endif %}
                   {% elif user.is_superuser %}
+                  <!-- if user object is a super user add the super user icon to their details -->
                   <li>Account Type: Super User <i class="fas fa-user-cog text-warning"></i></li>
                   {% else %}
+                  <!-- otherwise standard display is Runner with make leader button -->
                   <li>Account Type: Runner</li>
                   <li class="btn btn-warning"><a href="{% url 'make_leader' user.id %}" class="text-dark">Make
                       Leader</a></li>
@@ -54,6 +59,7 @@
   </div>
 </div>
 {% else %}
+<!-- message displayed to users without access to this page -->
 <div class="container">
   <div class="row py-2">
     <div class="col-12">

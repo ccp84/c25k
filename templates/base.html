@@ -28,14 +28,19 @@
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						{% if user.is_authenticated %}
+						<!-- icons for logged in users -->
 							{% if request.user.groups.all.0.name == 'leader' %}
+							<!-- icon if logged in leader -->
 							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-users text-success"></i></a>
 							{% elif request.user.is_superuser %}
+							<!-- icon if logged in super user -->
 							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user-cog text-success"></i></a>
 							{% else %}
+							<!-- icon if logged in standard user -->
 							<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user text-success"></i></a>
 							{% endif %}
 						{% else %}
+						<!-- icon if logged out -->
 						<a class="navbar-brand" href="{% url 'home' %}">c25k <i class="fas fa-user-slash text-danger"></i></a>
 						{% endif %}
 						<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -44,6 +49,7 @@
 									<a class="nav-link" href="{% url 'home' %}">Home</a>
 								</li>
 								{% if user.is_authenticated %}
+								<!-- nav links for logged in users -->
 								<li class="nav-item">
 									<a class="nav-link" href="{% url 'run_list' %}">Run List</a>
 								</li>
@@ -51,6 +57,7 @@
 									<a class="nav-link" href="{% url 'profile' %}">User Profile</a>
 								</li>
 									{% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
+									<!-- additional nav links for leaders -->
 									<li class="nav-item">
 										<a class="nav-link" href="{% url 'user_list' %}">Leader Tools</a>
 									</li>
@@ -59,6 +66,7 @@
 									<a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
 								</li>
 								{% else %}
+								<!-- nav links shown when logged out -->
 								<li class="nav-item">
 									<a class="nav-link" href="{% url 'account_login' %}">Sign In</a>
 								</li>
@@ -73,6 +81,7 @@
 			</div>
 		</div>
 	</header>
+	<!-- messages displayed on all pages -->
 	{% if messages %}
 	<div class="container">
 		<div class="row py-2">
@@ -90,6 +99,7 @@
 	</div>
 	{% endif %}
 	{% block content %}
+	<!-- page content -->
 	{% endblock %}
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">

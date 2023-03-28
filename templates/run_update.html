@@ -5,6 +5,7 @@
     <div class="row py-2">
         <div class="col-sm-8 col-lg-6">
             {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
+            <!-- page only available to leaders/super users -->
             <div class="card border-success mb-3">
                 <div class="card-header bg-white">
                     <h2 class="text-success">Edit Run</h2>
@@ -27,6 +28,7 @@
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
+            <!-- message displayed to users without authorisation -->
             <p>You must be a leader to access this form</p>
             <a href="{% url 'run_list' %}">Return to run list</a>
         </div>

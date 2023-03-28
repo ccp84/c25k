@@ -2,6 +2,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
+<!-- restricted to logged in users -->
 <div>
     <div class="container">
         <div class="row py-2">
@@ -19,6 +20,7 @@
 <div class="container">
     <div class="row">
         {% for run in run_list %}
+        <!-- loop each run object returned by database query -->
         <div class="col-sm-6 col-lg-4 my-2">
             <div class="card border-success mb-3">
                 <div class="card-header">
@@ -33,6 +35,10 @@
                         <form action="{% url 'run_join' run.id %}" method="POST">
                             {% csrf_token %}
                             {% if user.id in run.signed_up %}
+                            <!-- 
+                            Check if logged in user id is in the list returned by signed up model function
+                            If true display green icon, if false display red icon
+                            -->
                             <button type="submit" class="btn btn-success font-weight-bold" name="run_id" value="{{run.id}}">In
                                 <i class="fas fa-running"></i>
                             </button>
@@ -45,6 +51,7 @@
                     </div>
                 </div>
                 {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser%}
+                <!-- additional options for users with leader/super user credentials -->
                 <div class="card-footer text-dark">
                     <h5>Signed up: <span class="badge badge-secondary badge-pill">{{ run.num_of_runners }}</span> </h5>
                     <ul>
@@ -61,11 +68,13 @@
             </div>
         </div>
         {% empty %}
+        <!-- message if no run objects returned by query -->
         <p>No current runs</p>
         {% endfor %}
     </div>
 </div>
 {% else %}
+<!-- message displayed to user if they access the page while not logged in -->
 <div class="container">
     <div class="row py-2">
         <div class="col-12">

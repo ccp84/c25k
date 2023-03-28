@@ -2,6 +2,7 @@
 
 {% block content %}
 {% if request.user.groups.all.0.name == 'leader' or request.user.is_superuser %}
+<!-- page restricted to leaders/super users -->
 <div class="container">
     <div class="row py-3">
         <div class="col-sm-10 offset-sm-1 col-lg-8 offset-lg-2">
@@ -22,6 +23,7 @@
     
 </div>
 {% else %}
+<!-- message returned if users are not authorised to view this page -->
 <div class="container">
     <div class="row py-2">
         <div class="col-12">
