@@ -602,6 +602,7 @@ I have used tools to assist me as a developer:
 * [Code to add users to a group](https://stackoverflow.com/questions/6288661/adding-a-user-to-a-group-in-django) - The function to make runners into leaders was built using this stack overflow thread.
 * [Modifications to allauth standard sign-up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
 * [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the Django documentation here.
+* Custom 404 and 500 pages implemented using Django documentation [here](https://docs.djangoproject.com/en/3.2/topics/http/views/#customizing-error-views) and [this stack overflow thread](https://stackoverflow.com/questions/12180281/implementing-http404-in-django/12180499#12180499)
 * [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) - Used for readme and testing document templates
 * My mentor Tim Nelson - For support and guidance throughout this project
 * Code Institute Slack Community - For their help with troubleshooting, testing and reviewing the project
