@@ -240,11 +240,32 @@ Below are the results from the tests that I have created:
 
 | File | Coverage | Screenshot |
 | --- | --- | --- |
-| views.py |  |  |
+| views.py | 69% | ![coverage](documentation/testing/coverage_views.png) |
 
 #### Unit Test Issues
 
+I could not get the following test to work so I have removed this code prior to submission but would have continued from here to complete the views.py file coverage. 
 
+```python
+    def test_get_create_run_page(self):
+        testuser = User.objects.create(username='test', password='test')
+        self.client.login(username='test', password='test')
+        response = self.client.get('/run/create')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'run_create.html')
+```
+
+Error returned:
+```
+FAIL: test_get_create_run_page (register.tests.TestViews)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/c25k/register/tests.py", line 22, in test_get_create_run_page
+    self.assertEqual(response.status_code, 200)
+AssertionError: 302 != 200
+```
+
+I believe this could possibly be due to limitations based on user groups needing to be created on the test database but did not manage to find enough documentation to help me resolve this at this time. 
 
 ## Bugs
 
