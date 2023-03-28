@@ -23,6 +23,8 @@ I have used the recommended [HTML W3C Validator](https://validator.w3.org) to va
 | Sign In | [W3C](https://validator.w3.org/nu/?showsource=yes&doc=https%3A%2F%2Fc25kapp.herokuapp.com%2Faccounts%2Flogin%2F) | ![screenshot](documentation/testing/html_validation_sign_in.png) | None |
 | Sign Out | None, authentication needed | ![screenshot](documentation/testing/html_validation_sign_out.png) | None |
 | Leader Tools | None, authentication needed | ![screenshot](documentation/testing/html_validation_leader_tools.png) | None |
+| 404 | None, error page | ![screenshot](documentation/testing/html_validation_404.png) | None |
+| 500 | None, error page | ![screenshot](documentation/testing/html_validation_500.png) | None |
 
 ### CSS
 
