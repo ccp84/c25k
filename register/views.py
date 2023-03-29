@@ -27,6 +27,12 @@ class RunList(ListView):
     model = Run
     template_name = 'run_list.html'
 
+    def get_context_data(self):
+        context = super(RunList, self).get_context_data()
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
+        context['yesterday'] = yesterday
+        return context
+
 
 class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     model = Run

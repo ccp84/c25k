@@ -20,6 +20,7 @@
 <div class="container">
     <div class="row">
         {% for run in run_list %}
+        {% if run.date > yesterday %}
         <!-- loop each run object returned by database query -->
         <div class="col-sm-6 col-lg-4 my-2">
             <div class="card border-success mb-3">
@@ -67,6 +68,7 @@
                 {% endif %}
             </div>
         </div>
+        {% endif %}
         {% empty %}
         <!-- message if no run objects returned by query -->
         <p>No current runs</p>
