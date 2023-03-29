@@ -9,12 +9,15 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import Group
 from .forms import ProfileForm, RunForm, ProfileUpdateForm
+import datetime
 
 
 def home(request):
     run_list = Run.objects.all().order_by('date')
+    yesterday = datetime.date.today() - datetime.timedelta(days=1)
     context = {
-        "run_list": run_list
+        "run_list": run_list,
+        "yesterday": yesterday
     }
     return render(request, 'home.html', context)
 

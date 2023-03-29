@@ -27,8 +27,8 @@
                 </thead>
                 <tbody>
                     {% for run in run_list %}
-                    {% if forloop.counter <= 5 %}
-                    <!-- display only the next 5 runs in the list -->
+                    {% if run.date > yesterday %}
+                    <!-- display anything with a date today or beyond -->
                     <tr>
                         <td>{{ run.title }}</td>
                         <td>{{ run.date }}</td>
