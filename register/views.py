@@ -41,13 +41,21 @@ class RunCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
     success_url = '/run/list'
     success_message = "Run created"
 
+    def form_valid(self, form):
+        form.instance.leader = self.request.user
+        return super().form_valid(form)
+
 
 class RunUpdate(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     model = Run
     template_name = 'run_update.html'
-    fields = ["title", "leader", "location", "date", "time", "details"]
+    fields = ["title", "location", "date", "time", "details"]
     success_url = '/run/list'
     success_message = "Run updated"
+
+    def form_valid(self, form):
+        form.instance.leader = self.request.user
+        return super().form_valid(form)
 
 
 class RunDelete(SuccessMessageMixin, LoginRequiredMixin, DeleteView):

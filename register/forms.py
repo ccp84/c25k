@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, Run
+from .models import Profile, Run, User
 
 
 class DateInput(forms.DateInput):
@@ -36,7 +36,7 @@ class RunForm(forms.ModelForm):
         widgets = {
             "date": DateInput(),
         }
-        fields = ["title", "leader", "location", "date", "time", "details"]
+        fields = ["title", "location", "date", "time", "details"]
 
 
 # Code taken from:
