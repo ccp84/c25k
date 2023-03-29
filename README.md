@@ -424,6 +424,22 @@ Logged-in superuser accounts can remove users from the leaders group. The functi
 
 ![remove_leader](documentation/remove_leader.png)
 
+### Date filtering
+
+I added date filtering to the home page and run list views so that past runs would no longer show on the site using the following code snippet from [geeksforgeeks](https://www.geeksforgeeks.org/get-yesterdays-date-using-python/)
+```python
+yesterday = datetime.date.today() - datetime.timedelta(days=1)
+    context = {
+        "run_list": run_list,
+        "yesterday": yesterday
+    }
+```
+The django template can now filter based on a date being greater than yesterday.
+```html
+{% for run in run_list %}
+{% if run.date > yesterday %}
+```
+
 ## REVIEW POINT 4
 |At the final review point of the project. Both documentation points remain to be finished and I have moved the last feature to won't have. | ![review_point_4](documentation/project_review_4.png) |
 | ----------------------------------- | ----------------------------------------------------  |
@@ -435,8 +451,7 @@ Logged-in superuser accounts can remove users from the leaders group. The functi
 * Adding a 'completed' flag to runners' profiles which can be toggled by a group leader once they have completed the course. This will allow for a database of course alumni. 
 * Adding run categories so that new course participants can follow the structure of the next 9-week course, whilst graduates could have progression runs available to them for further onward support.
 * Further separating the functionality for a whole club approach to incorporate half/marathon training, Sunday Long Run group, cross country team, etc to all have their own filters. 
-* The ability for leaders to add messages onto the front screen of the app in case of run cancellations so that runners could check for updates before setting out to a training session that may no longer be running, or may have changed location. 
-* Auto delete of past runs so that anything before 'today' does not appear on the system. 
+* The ability for leaders to add messages onto the front screen of the app in case of run cancellations so that runners could check for updates before setting out to a training session that may no longer be running, or may have changed location.  
 
 ## Testing
 
@@ -603,6 +618,7 @@ I have used tools to assist me as a developer:
 * [Modifications to allauth standard sign-up](https://stackoverflow.com/questions/12303478/how-to-customize-user-profile-when-using-django-allauth) - The form and settings for accessing first name and last name when signing up in allauth were taken from this stack overflow article.
 * [Success messages](https://docs.djangoproject.com/en/4.1/ref/contrib/messages/) - Syntax for adding success messages to views researched from the Django documentation here.
 * Custom 404 and 500 pages implemented using Django documentation [here](https://docs.djangoproject.com/en/3.2/topics/http/views/#customizing-error-views) and [this stack overflow thread](https://stackoverflow.com/questions/12180281/implementing-http404-in-django/12180499#12180499)
+* Date filtering achieved using this code snippet from [geeksforgeeks](https://www.geeksforgeeks.org/get-yesterdays-date-using-python/)
 * [Markdown Builder by Tim Nelson](https://traveltimn.github.io/markdown-builder) - Used for readme and testing document templates
 * My mentor Tim Nelson - For support and guidance throughout this project
 * Code Institute Slack Community - For their help with troubleshooting, testing and reviewing the project
